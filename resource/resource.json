@@ -1,0 +1,17 @@
+{
+"resources":
+	[
+		{"name":"load","type":"sheet","url":"assets/load.json"},
+		{"name":"socialIcon","type":"sheet","url":"assets/socialIcon.json"},
+        { "name": "assets", "type": "sheet", "url": "assets/assets.json" },
+        { "name": "mapView", "type": "sheet", "url": "assets/mapView.json" },
+        { "name": "copy", "type": "json", "url": "config/copy.json" },
+        { "name": "description", "type": "json", "url": "config/description.json" }
+	],
+
+"groups":
+	[
+		{"name":"loading","keys":"load"},
+        {"name":"preload","keys":"socialIcon,assets,mapView,copy,description"}
+	]
+}
