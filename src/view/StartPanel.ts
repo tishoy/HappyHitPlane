@@ -1,7 +1,7 @@
 
 class StartPanel extends BasePanel{
 
-    public constructor(){
+    constructor(){
         super();
     }
 
@@ -86,15 +86,6 @@ class StartPanel extends BasePanel{
 
         var toggleSwitch = new EToggleSwitch(this,"switchOff","switchOn","switchBar");
         //this.addChild(toggleSwitch);
-
-        var tabBarCallBack:Function = function(e){
-            console.log("method_name:"+e.data);
-        }
-        var tabBar = new ETabBar(this,"cancelBtn","acceptBtn",tabBarCallBack,["I","am","tab","bar","!"],20);
-        tabBar.x = this.w/2;
-        //this.addChild(tabBar);
-
-
 
         this.initEffect();
 

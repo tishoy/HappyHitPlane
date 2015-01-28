@@ -28,7 +28,7 @@ class EToggleSwitch extends egret.DisplayObjectContainer{
     * backFun       点击方法 如果需要在backFun中使用this的，小心使用这个
     * 注意：如果有动画的话，只有动画结束才会触发click事件
     */
-    public constructor(context:any,switchOffName:string = "",switchOnName:string = "",switchBarName:string = "",backFun:Function = null,assetsName:string = "assets"){
+    constructor(context:any,switchOffName:string = "",switchOnName:string = "",switchBarName:string = "",backFun:Function = null,assetsName:string = "assets"){
         super();
         this.param.context = context;
         this.switchOffName = switchOffName;

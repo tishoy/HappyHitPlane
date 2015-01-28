@@ -51,9 +51,9 @@
     }
 
     nextCopy(): void {
-        this.copy ++;
+        this.copy++;
         this.startCopy(this.copy);
-        localStorage.setItem("advantureCopy", this.copy.toString());
+        //localStorage.setItem("advantureCopy", this.copy.toString());
     }
 
     loadMap(copy:number):void {
@@ -102,16 +102,19 @@
             case GridTypeEnum.head:
                 this.gameData.headTimes++;
                 break;
+
             case GridTypeEnum.body:
                 if (this.gameData.keeping) {
                     this.gameData.bodyTimes++;
                 }
                 break;
+
             case GridTypeEnum.miss:
                 if (this.gameData.keeping) {
                     this.gameData.missTimes++;
                 }
                 break;
+
             default:
                 egret.Logger.info("no this grid type");
                 return;
@@ -159,7 +162,7 @@
 
     endGame(): void {
         this.gameData.keeping = false;
-        Global.dispatchEvent(MainNotify.closeGameOverPanelNotify, null, false);
+        //Global.dispatchEvent(MainNotify.closeGameOverPanelNotify, null, false);
     }
 
     startGame(): void {

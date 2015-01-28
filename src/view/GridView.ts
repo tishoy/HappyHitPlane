@@ -49,7 +49,9 @@
             }
         } else if (this.selected) {
             this.view.texture = this.sheet.getTexture("select");
-        } 
+        } else {
+            this.view.texture = null;
+        }
     }
 
     private onReset(e: GameEvent): void {
@@ -71,15 +73,15 @@
     private onTouch(e: egret.TouchEvent): void {
         if (!this._selected) {
             this.selected = true;
-//            if (PanelManager.openGamePanel().selectedGrid) {
-//                StageManager.gameWin.selectedGrid.selected = false;
-//                StageManager.gameWin.selectedGrid = this;
-//            } else {
-//                StageManager.gameWin.selectedGrid = this;
-//            }
+            if (PanelManager.gamePanel.selectedGrid) {
+                PanelManager.gamePanel.selectedGrid.selected = false;
+                PanelManager.gamePanel.selectedGrid = this;
+            } else {
+                PanelManager.gamePanel.selectedGrid = this;
+            }
         } else {
             this.statu = true;
-//            StageManager.gameWin.selectedGrid = null;
+            PanelManager.gamePanel.selectedGrid = null;
             this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
             var type = MapData.getInstance().getMapGridType(this.column, this.row);
             GameController.getInstance().logHitResult(type);
@@ -92,10 +94,10 @@
 
     set selected(value: boolean) {
         this._selected = value;
-        if (this._selected) {
-           egret.Tween.get(this, { loop: true }).to({ apha : 0}, 1000).to({ apha : 1}, 1000);
-        } 
         this.updateView();
+        if (this._selected) {
+           egret.Tween.get(this.view, { loop: true }).to({ apha : 0}, 1000).to({ apha : 1}, 1000);
+        } 
     }
 
     get statu(): boolean {

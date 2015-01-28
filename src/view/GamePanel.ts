@@ -19,6 +19,8 @@ class GamePanel extends BasePanel{
     private shopBtn2:EButton;
     private fbBtn2:EButton;
 
+    selectedGrid:GridView;
+
     private mapName: ETextField;
     private headTimesLabel: ETextField;
     private headNum: egret.BitmapText;
@@ -30,7 +32,7 @@ class GamePanel extends BasePanel{
     private lastStepNum: egret.BitmapText;
     private typerTF: ETextField;
     // 初始化面板
-    public initPanel():void{
+    initPanel():void{
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);   
@@ -178,6 +180,11 @@ class GamePanel extends BasePanel{
         //TipsManager.addTips(this.shopBtn,"我是商店按钮哦！",2);
         //TipsManager.addTips(this.fbBtn,"我是facebook按钮哦！",3);
         //TipsManager.addTips(this.setBtn,"我是设置按钮哦！",4);
+        
+        var items = new ETabBar(this, "cancelBtn", "acceptBtn", this.tabBarCallBack, ["导弹", "雷达", "燃烧"], 20);
+        items.x = this.w / 2;
+        items.y = 200;
+        this.addChild(items);
 
         this.initEffect();
         this.gameData = GameData.getInstance();
@@ -185,6 +192,10 @@ class GamePanel extends BasePanel{
         Global.addEventListener(GameEvent.GAME_START, this.updateHitTimes, this);
         Global.addEventListener(GameEvent.GAME_VICTORY, this.onVictory, this);
         Global.addEventListener(GameEvent.GAME_LOST, this.onLost, this);
+    }
+
+    private tabBarCallBack(e) {
+        
     }
 
     private updateHitTimes(e: GameEvent): void {

@@ -1,6 +1,9 @@
 ﻿class ItemData extends egret.EventDispatcher {
     private static instance: ItemData;
 
+    private radar: number = 0;
+    private fireBoom:number = 0;
+
     constructor() {
         super();
         if (ItemData.instance) {
@@ -17,6 +20,6 @@
     }
 
     initialize(): void {
-
+//        radar = 
     }
 }

@@ -29,7 +29,7 @@ class EToggleButton extends egret.DisplayObjectContainer{
     * cartoonType   动画类型 1:【可爱】按下变小，放开弹大 2:按下变小，放开轻微弹大 3：按下变小，放开变大
     * 注意：如果有动画的话，只有动画结束才会触发click事件
     */
-    public constructor(context:any,imgNormalName:string,imgSelectName:string,backFun:Function = null,descStr:string = "",fontSize:number = 30,cartoonType:number = 1,assetsName:string = "assets"){
+    constructor(context:any,imgNormalName:string,imgSelectName:string,backFun:Function = null,descStr:string = "",fontSize:number = 30,cartoonType:number = 1,assetsName:string = "assets"){
         super();
         this.param.context = context;
         this.imgNormalName = imgNormalName;
