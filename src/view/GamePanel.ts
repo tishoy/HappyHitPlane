@@ -31,6 +31,8 @@ class GamePanel extends BasePanel{
     private lastStepLabel: ETextField;
     private lastStepNum: egret.BitmapText;
     private typerTF: ETextField;
+
+    private items:ETabBar;
     // 初始化面板
     initPanel():void{
         this.bg = new egret.Bitmap();
@@ -75,8 +77,8 @@ class GamePanel extends BasePanel{
 
         this.headNum = new egret.BitmapText();
         this.headNum.spriteSheet = RES.getRes("font_json");
-        this.headNum.x = 78;
-        this.headNum.y = 140;
+        this.headNum.x = 178;
+        this.headNum.y = 131;
         this.addChild(this.headNum);
 
         this.bodyTimesLabel = new ETextField();
@@ -85,14 +87,14 @@ class GamePanel extends BasePanel{
         this.bodyTimesLabel.stroke = 1;
         this.bodyTimesLabel.width = 370;
         this.bodyTimesLabel.setText("击中次数");
-        this.bodyTimesLabel.x = 190;
+        this.bodyTimesLabel.x = 220;
         this.bodyTimesLabel.y = 140;
         this.addChild(this.bodyTimesLabel);
 
         this.bodyNum = new egret.BitmapText();
         this.bodyNum.spriteSheet = RES.getRes("font_json");
-        this.bodyNum.x = 230;
-        this.bodyNum.y = 140;
+        this.bodyNum.x = 360;
+        this.bodyNum.y = 131;
         this.addChild(this.bodyNum);
 
         this.hitTimesLabel = new ETextField();
@@ -107,8 +109,8 @@ class GamePanel extends BasePanel{
 
         this.hitNum = new egret.BitmapText();
         this.hitNum.spriteSheet = RES.getRes("font_json");
-        this.hitNum.x = 225;
-        this.hitNum.y = 83;
+        this.hitNum.x = 325;
+        this.hitNum.y = 74;
         this.addChild(this.hitNum);
 
         this.lastStepLabel = new ETextField();
@@ -123,10 +125,9 @@ class GamePanel extends BasePanel{
 
         this.lastStepNum = new egret.BitmapText();
         this.lastStepNum.spriteSheet = RES.getRes("font_json");
-        this.lastStepNum.x = 160;
-        this.lastStepNum.y = 190;
+        this.lastStepNum.x = 260;
+        this.lastStepNum.y = 181;
         this.addChild(this.lastStepNum);
-        //EffectUtils.typerEffect(this.typerTF,"牛逼大了，打字机效果呢！");
 
         this.shopBtn2 = new EButton(this,"shopBtn",this.alert2,"",30,2);
         this.shopBtn2.x = 150;
@@ -181,10 +182,11 @@ class GamePanel extends BasePanel{
         //TipsManager.addTips(this.fbBtn,"我是facebook按钮哦！",3);
         //TipsManager.addTips(this.setBtn,"我是设置按钮哦！",4);
         
-        var items = new ETabBar(this, "cancelBtn", "acceptBtn", this.tabBarCallBack, ["导弹", "雷达", "燃烧"], 20);
-        items.x = this.w / 2;
-        items.y = 200;
-        this.addChild(items);
+        this.items = new ETabBar(this, "cancelBtn", "acceptBtn", this.tabBarCallBack, ["导弹", "雷达", "燃烧"], 20);
+        this.items.x = this.w / 2;
+        this.items.y = 240;
+        this.items.setSelectedIndex(2);
+//        this.addChild(this.items);
 
         this.initEffect();
         this.gameData = GameData.getInstance();
@@ -195,7 +197,7 @@ class GamePanel extends BasePanel{
     }
 
     private tabBarCallBack(e) {
-        
+//        this.items.setSelectedIndex();
     }
 
     private updateHitTimes(e: GameEvent): void {
@@ -206,7 +208,10 @@ class GamePanel extends BasePanel{
             this.mapName.visible = true;
             this.lastStepLabel.visible = true;
             this.lastStepNum.visible = true;
-            this.mapName.setText("地图名称：" + this.gameData.mapName);
+//            this.mapName.setText("地图名称：" + this.gameData.mapName);
+            if (e.type == GameEvent.GAME_START) {
+                EffectUtils.typerEffect(this.mapName, "地图名称：" + this.gameData.mapName);
+            }
             this.lastStepNum.text = this.gameData.lastStep.toString();
         } else {
             this.lastStepLabel.visible = false;

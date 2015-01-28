@@ -12,7 +12,11 @@
       */
     static head: number = 2; 
     /**
-      *  格子礼品    //打算设置在角落里
+      *  宝箱    //打算设置在角落里
       */
     static gift: number = 3;
+    /**
+      *  金币    //打算设置在角落里
+      */
+    static gold: number = 4;
 } 

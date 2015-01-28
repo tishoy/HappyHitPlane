@@ -19,7 +19,6 @@
         this.width = this.height = 48;
         this.sheet = RES.getRes("mapView");
         this.view = new egret.Bitmap();
-//        this.view.texture = this.sheet.getTexture("hitHole");
         this.addChild(this.view);
 
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
@@ -39,16 +38,19 @@
 
                 case GridTypeEnum.body:
                     this.view.texture = this.sheet.getTexture("hitBody");
-                    TipsManager.addTips(this,"身子呀！",2);
+                    EffectUtils.shakeObj(this.view);
+                    TipsManager.addTips(this, "身子呀！", 2);
                     break;
 
                 case GridTypeEnum.head:
                     this.view.texture = this.sheet.getTexture("hitHead");
+                    EffectUtils.shakeScreen(1);
                     TipsManager.addTips(this,"脑瓜子！",3);
                     break;
             }
         } else if (this.selected) {
             this.view.texture = this.sheet.getTexture("select");
+            EffectUtils.blinkEffect(this.view);
         } else {
             this.view.texture = null;
         }
@@ -106,26 +108,8 @@
 
     set statu(value: boolean) {
         this._statu = value;
-        if (!this._statu) {
-            egret.Tween.removeTweens(this);
-            this.scaleX = this.scaleY = this.alpha = 1;
-        }
         if (this._selected) {
-            egret.Tween.removeTweens(this);
-            this.scaleX = this.scaleY = this.alpha = 1;
             this._selected = false;
-
-            var type = MapData.getInstance().getMapGridType(this.column, this.row);
-            switch (type) {
-                case GridTypeEnum.body:
-                    //this.scaleX = this.scaleY = 0.5;
-//                    egret.Tween.get(this, { loop: true }).to({ apha: 0 }, 1800).to({ apha: 1 }, 2000);
-                    break;
-
-                case GridTypeEnum.head:
-//                    egret.Tween.get(this, { loop: true }).to({ scaleX: 1.1, scaleY: 1.1 }, 1000).to({ scaleX: 1, scaleY: 1 }, 800);
-                    break;
-            }
         }
         this.updateView();
     }
