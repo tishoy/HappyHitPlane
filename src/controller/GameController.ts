@@ -41,6 +41,7 @@
     startCopy(copy: number = 0): void {
         this.mapData.clear();
         this.gameData.clear();
+        this.gameData.model = GameModelEnum.advanture;
         this.gameData.keeping = false;
         if (copy == 0) {
             this.loadMap(this.copy);
@@ -82,6 +83,7 @@
     commonGame(): void {
         this.mapData.clear();
         this.gameData.clear();
+        this.gameData.model = GameModelEnum.common;
         this.gameData.keeping = false;
         while (this.mapData.numPlane < 3) {
             this.addPlane();

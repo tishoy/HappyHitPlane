@@ -20,10 +20,14 @@ class GamePanel extends BasePanel{
     private fbBtn2:EButton;
 
     private mapName: ETextField;
-    private headTimes: ETextField;
-    private bodyTimes: ETextField;
-    private hitTimes: ETextField;
-    private lastStep: ETextField;
+    private headTimesLabel: ETextField;
+    private headNum: egret.BitmapText;
+    private bodyTimesLabel: ETextField;
+    private bodyNum: egret.BitmapText;
+    private hitTimesLabel: ETextField;
+    private hitNum: egret.BitmapText;
+    private lastStepLabel: ETextField;
+    private lastStepNum: egret.BitmapText;
     private typerTF: ETextField;
     // 初始化面板
     public initPanel():void{
@@ -50,37 +54,77 @@ class GamePanel extends BasePanel{
 
         this.mapName = new ETextField();
         this.mapName.bold = true;
-        this.mapName.strokeColor = 0x000000;
+        this.mapName.strokeColor = 0xFFFFFF;
         this.mapName.stroke = 1;
         this.mapName.width = 370;
-        this.mapName.setText("");
-        this.mapName.x = this.w / 2 - this.mapName.width / 2;
-        this.mapName.y = this.h / 2 + 100;
-//        this.addChild(this.mapName);
-//        this.mapName = new HtmlText([["我是", 0xff0000, 18], ["多颜色", 0x55ff00, 30], ["文本", 0xff0000, 40], ["组件", 0x55ff00]], 30, false, 1, 0xFFFFFF);
-//        this.mapName.x = this.w / 2 - this.mapName.width/2;
-//        this.mapName.y = -350;
-//        this.addChild(this.mapName);
+        this.mapName.x = 100;
+        this.mapName.y = 30;
+        this.addChild(this.mapName);
 
+        this.headTimesLabel = new ETextField();
+        this.headTimesLabel.bold = true;
+        this.headTimesLabel.strokeColor = 0x000000;
+        this.headTimesLabel.stroke = 1;
+        this.headTimesLabel.width = 370;
+        this.headTimesLabel.setText("爆头次数");
+        this.headTimesLabel.x = 38;
+        this.headTimesLabel.y = 140;
+        this.addChild(this.headTimesLabel);
 
-        this.typerTF = new ETextField();
-        this.typerTF.bold = true;
-        this.typerTF.strokeColor = 0x000000;
-        this.typerTF.stroke = 1;
-        this.typerTF.width = 370;
-        this.typerTF.setText("");
-        this.typerTF.x = this.w/2 -this.typerTF.width/2;
-        this.typerTF.y = this.h/2 + 100;
-        //this.addChild(this.typerTF);
+        this.headNum = new egret.BitmapText();
+        this.headNum.spriteSheet = RES.getRes("font_json");
+        this.headNum.x = 78;
+        this.headNum.y = 140;
+        this.addChild(this.headNum);
 
+        this.bodyTimesLabel = new ETextField();
+        this.bodyTimesLabel.bold = true;
+        this.bodyTimesLabel.strokeColor = 0x000000;
+        this.bodyTimesLabel.stroke = 1;
+        this.bodyTimesLabel.width = 370;
+        this.bodyTimesLabel.setText("击中次数");
+        this.bodyTimesLabel.x = 190;
+        this.bodyTimesLabel.y = 140;
+        this.addChild(this.bodyTimesLabel);
+
+        this.bodyNum = new egret.BitmapText();
+        this.bodyNum.spriteSheet = RES.getRes("font_json");
+        this.bodyNum.x = 230;
+        this.bodyNum.y = 140;
+        this.addChild(this.bodyNum);
+
+        this.hitTimesLabel = new ETextField();
+        this.hitTimesLabel.bold = true;
+        this.hitTimesLabel.strokeColor = 0x000000;
+        this.hitTimesLabel.stroke = 1;
+        this.hitTimesLabel.width = 370;
+        this.hitTimesLabel.setText("射击次数");
+        this.hitTimesLabel.x = 185;
+        this.hitTimesLabel.y = 83;
+        this.addChild(this.hitTimesLabel);
+
+        this.hitNum = new egret.BitmapText();
+        this.hitNum.spriteSheet = RES.getRes("font_json");
+        this.hitNum.x = 225;
+        this.hitNum.y = 83;
+        this.addChild(this.hitNum);
+
+        this.lastStepLabel = new ETextField();
+        this.lastStepLabel.bold = true;
+        this.lastStepLabel.strokeColor = 0x000000;
+        this.lastStepLabel.stroke = 1;
+        this.lastStepLabel.width = 370;
+        this.lastStepLabel.setText("剩余次数");
+        this.lastStepLabel.x = 120;
+        this.lastStepLabel.y = 190;
+        this.addChild(this.lastStepLabel);
+
+        this.lastStepNum = new egret.BitmapText();
+        this.lastStepNum.spriteSheet = RES.getRes("font_json");
+        this.lastStepNum.x = 160;
+        this.lastStepNum.y = 190;
+        this.addChild(this.lastStepNum);
         //EffectUtils.typerEffect(this.typerTF,"牛逼大了，打字机效果呢！");
-
-        this.helpBtn2 = new EButton(this,"helpBtn",this.alert1,"",30,1);
-        this.helpBtn2.x = 20;
-        this.helpBtn2.y = 200;
-        //this.addChild(this.helpBtn2);   
-        this.helpBtn2.alpha = 0;
-
 
         this.shopBtn2 = new EButton(this,"shopBtn",this.alert2,"",30,2);
         this.shopBtn2.x = 150;
@@ -139,26 +183,74 @@ class GamePanel extends BasePanel{
         this.gameData = GameData.getInstance();
         Global.addEventListener(GameEvent.GAME_CONTINUE, this.updateHitTimes, this);
         Global.addEventListener(GameEvent.GAME_START, this.updateHitTimes, this);
+        Global.addEventListener(GameEvent.GAME_VICTORY, this.onVictory, this);
+        Global.addEventListener(GameEvent.GAME_LOST, this.onLost, this);
     }
 
     private updateHitTimes(e: GameEvent): void {
-        this.hitTimes.text = this.gameData.hitTimes.toString();
-        this.bodyTimes.text = this.gameData.bodyTimes.toString();
-        this.headTimes.text = this.gameData.headTimes.toString();
+        this.headNum.text = this.gameData.headTimes.toString();
+        this.bodyNum.text = this.gameData.bodyTimes.toString();
+        this.hitNum.text = this.gameData.hitTimes.toString();
         if (GameData.getInstance().model == GameModelEnum.advanture) {
             this.mapName.visible = true;
-            this.lastStep.visible = true;
-            this.mapName.text = this.gameData.mapName;
-            this.lastStep.text = this.gameData.lastStep.toString();
-//            this.step.source = this.lastStep;
+            this.lastStepLabel.visible = true;
+            this.lastStepNum.visible = true;
+            this.mapName.setText("地图名称：" + this.gameData.mapName);
+            this.lastStepNum.text = this.gameData.lastStep.toString();
         } else {
+            this.lastStepLabel.visible = false;
             this.mapName.visible = false;
-            this.lastStep.visible = false;
+            this.lastStepNum.visible = false;
         }
     }
 
-    private alert1():void{
-        Global.alert("提示","我是一个提示栗子，哈哈",null,1);
+    onVictory(e: GameEvent): void {
+        if (this.gameData.model == GameModelEnum.common) {
+            RES.getResAsync("description", this.startAnimation, this);
+        } else if (this.gameData.model == GameModelEnum.advanture) {
+            Global.confirm("提示", "恭喜您闯关成功,是否再来一关？", this.onNextCopyCancel, this.onNextCopyConfirm,1);
+        }
+    }
+
+    private onNextCopyConfirm(): void {
+        GameController.getInstance().nextCopy();
+    }
+
+    private onNextCopyCancel(): void {
+        Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
+        Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
+    }
+
+    private startAnimation(result: Array<any>): void {
+        var step = GameData.getInstance().hitTimes;
+        if (step <= 10) {
+            var lineArr: Array<any> = result[step];
+        } else if (step < 15) {
+            var lineArr: Array<any> = result[11];
+        } else if (step < 20) {
+            var lineArr: Array<any> = result[12];
+        } else if (step < 50) {
+            var lineArr: Array<any> = result[13];
+        } else if (step < 81) {
+            var lineArr: Array<any> = result[14];
+        } else {
+            var lineArr: Array<any> = result[15];
+        }
+        var text: string = "";
+        text = lineArr[1]["text"];
+        Global.alert("提示", "您使用了" + step + "步打出了所有飞机！" + text, this.goonCommonGame, 3);
+    }
+
+    private goonCommonGame(): void {
+        
+    }
+
+    private onLost():void{
+        Global.alert("提示", "任务失败, 请从新再来", this.onThisCopyConfirm, 2);
+    }
+
+    private onThisCopyConfirm(): void {
+        
     }
 
     private alert2():void{
