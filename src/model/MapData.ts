@@ -4,7 +4,7 @@
     private columns: number = 9;     //number    横向是数字 1-9 即九列
     private rows: number = 9;        //letter    竖向是字母 A-I 即九行
     numPlane: number = 0;
-    map: number[];
+    map: GridData[];
     private hasBadPlane:boolean = false;
 
     constructor() {
@@ -26,27 +26,35 @@
         this.map = new Array(this.columns * this.rows);
         this.map.length = this.columns * this.rows;
         for (var i = 0; i < this.map.length; i++) {
-            this.map[i] = GridTypeEnum.miss;
+            this.map[i].gridType = GridTypeEnum.miss;
         }
     }
 
     clear(): void {
         this.numPlane = 0;
         for (var i = 0; i < this.map.length; i++) {
-            this.map[i] = GridTypeEnum.miss;
+            this.map[i].gridType = GridTypeEnum.miss;
         }
     }
 
-    getMapGridType(column: number, row: number): number {
+    getMapGrid(column: number, row: number): GridData {
         return this.map[(row * this.columns) + column];
     }
 
     setMapGridTypeByPos(column: number, row: number, type: number): void {
-        this.map[(row * this.columns) + column] = type;
+        this.map[(row * this.columns) + column].gridType = type;
     }
 
     setMapGridTypeByValue(value: number, type: number): void {
-        this.map[value] = type;
+        this.map[value].gridType = type;
+    }
+
+    setHeadDirection(value: number, direction: number): void {
+        this.map[value].direction = direction;
+    }
+
+    setBodyTypeByValue(value: number, bodyType:number): void {
+        this.map[value].bodyType = bodyType;
     }
 
     /**
@@ -54,11 +62,11 @@
      * return true:表示这些所有格子都可以防止飞机。
      */
     checkValid(headColumn: number, headRow: number, direction: number): boolean {
-        if (this.getMapGridType(headColumn, headRow) == GridTypeEnum.miss) {
+        if (this.getMapGrid(headColumn, headRow).gridType == GridTypeEnum.miss) {
             var headPos: number = headRow * this.columns + headColumn;
             var plane: number[] = DirectionTypeEnum.getGridByDirection(direction);
             for (var i = 0; i < plane.length; i++) {
-                if (this.map[headPos + plane[i]] == GridTypeEnum.miss) {
+                if (this.map[headPos + plane[i]].gridType == GridTypeEnum.miss) {
                     continue;
                 } else {
                     return false;
@@ -90,8 +98,8 @@
                 for (var testGrid = 0; testGrid < testLength; testGrid++) {
                     var headed: number = badList[testList[testGrid]];
                     var directed: number = badDirectionList[testList[testGrid]];
-                    if (this.map[headed] == GridTypeEnum.head &&
-                        this.map[badList[headed] + DirectionTypeEnum.directionList[directed]] == GridTypeEnum.body) {
+                    if (this.map[headed].gridType == GridTypeEnum.head &&
+                        this.map[badList[headed] + DirectionTypeEnum.directionList[directed]].gridType == GridTypeEnum.body) {
                         egret.Logger.info("twice bad");
                         return false;
                     } else {
@@ -172,9 +180,11 @@
         }
         var headPos: number = this.columns * headRow + headColumn;
         this.setMapGridTypeByValue(headPos, GridTypeEnum.head);
+        this.setHeadDirection(headPos, direction);
         var plane: number[] = DirectionTypeEnum.getGridByDirection(direction);
         for (var i = 0; i < plane.length; i++) {
             this.setMapGridTypeByValue(headPos + plane[i], GridTypeEnum.body);
+            this.setBodyTypeByValue(headPos + plane[i], BodyGridEnum.getType(i));
         }
         return true;
     }

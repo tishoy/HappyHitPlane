@@ -1,6 +1,7 @@
 ﻿class GridView extends egret.Sprite{
-    private _selected:boolean;    //瞄准
+    private _selected:boolean;    //
     private _statu: boolean;  //0为关闭，1为打开
+    private type:number;
     contentGroup: egret.gui.Group;
     view: egret.Bitmap;
     sheet:egret.SpriteSheet;
@@ -29,8 +30,7 @@
 
     updateView() {
         if (this.statu) {
-            var type = MapData.getInstance().getMapGridType(this.column, this.row);
-            switch (type) {
+            switch (this.type) {
                 case GridTypeEnum.miss:
                     this.view.texture = this.sheet.getTexture("hitHole");
                     TipsManager.addTips(this, "洞哦！",1);
@@ -85,8 +85,7 @@
             this.statu = true;
             PanelManager.gamePanel.selectedGrid = null;
             this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
-            var type = MapData.getInstance().getMapGridType(this.column, this.row);
-            GameController.getInstance().logHitResult(type);
+            this.type = GameController.getInstance().getGridViewType(this.column, this.row);
         }
     }
 

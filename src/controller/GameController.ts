@@ -72,7 +72,7 @@
         }
         for (var j = 0; j < lightList.length; j++) {
             var grid: GridView = <GridView>PanelManager.gamePanel.getChildByName("grid" + (lightList[j].toString()));
-            if (this.mapData.map[lightList[j]] == GridTypeEnum.head) {
+            if (this.mapData.map[lightList[j]].gridType == GridTypeEnum.head) {
                 this.gameData.headTimes++;
             }
             grid.statu = true;
@@ -95,6 +95,14 @@
 
     infiniteGame(): void {
        
+    }
+
+    getGridViewType(column: number, row: number): number {
+        var grid: GridData = MapData.getInstance().getMapGrid(column, row);
+        GameController.getInstance().logHitResult(grid.gridType);
+        RecordData.getInstance().recordStep(grid);
+        return grid.gridType;
+
     }
 
     logHitResult(gridType: number): void {

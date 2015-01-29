@@ -1,9 +1,9 @@
 ﻿class GridData {
-    //未使用
     private _row: number;
     private _column: number;
     private _gridType: number;
     private _direction: number;
+    private _bodyType:number;
 
     public get row(): number {
         return this._row;
@@ -35,5 +35,13 @@
 
     public set direction(value: number) {
         this._direction = value;
+    }
+
+    get bodyType(): number {
+        return this._bodyType;
+    }
+
+    set bodyType(value: number) {
+        this._bodyType = value;
     }
 } 
