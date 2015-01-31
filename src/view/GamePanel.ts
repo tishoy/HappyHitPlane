@@ -210,6 +210,7 @@ class GamePanel extends BasePanel{
             this.lastStepNum.visible = true;
 //            this.mapName.setText("地图名称：" + this.gameData.mapName);
             if (e.type == GameEvent.GAME_START) {
+                this.mapName.setText("");
                 EffectUtils.typerEffect(this.mapName, "地图名称：" + this.gameData.mapName);
             }
             this.lastStepNum.text = this.gameData.lastStep.toString();

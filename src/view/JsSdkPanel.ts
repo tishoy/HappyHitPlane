@@ -1,4 +1,4 @@
-
+/*
 class JsSdkPanel extends BasePanel{
 
     public constructor(){
@@ -57,6 +57,7 @@ class JsSdkPanel extends BasePanel{
         } )        
     }
 
+
     private tipsEffect2(e):void{
         var checkConfig:BodyCheckJsAPISupport = new BodyCheckJsAPISupport;
         checkConfig.success = this.tipsEffectSuccess;
@@ -83,5 +84,5 @@ class JsSdkPanel extends BasePanel{
 
 
 }
-
+*/
 
