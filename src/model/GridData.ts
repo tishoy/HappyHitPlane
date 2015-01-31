@@ -1,24 +1,25 @@
 ﻿class GridData {
     private _row: number;
     private _column: number;
+    private _gridValue: number;
     private _gridType: number;
     private _direction: number;
     private _bodyType:number;
 
     public get row(): number {
-        return this._row;
-    }
-
-    public set rows(value: number) {
-        this._row = value;
+        return Math.floor(this._gridValue /9);
     }
 
     public get column(): number {
-        return this._column;
+        return this._gridValue % 9;
     }
 
-    public set column(value: number) {
-        this._column = value;
+    public get gridValue(): number {
+        return this._gridValue;
+    }
+
+    public set gridValue(value: number) {
+        this._gridValue = value;
     }
 
     public get gridType(): number {

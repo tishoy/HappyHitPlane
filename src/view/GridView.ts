@@ -33,7 +33,8 @@
             switch (this.type) {
                 case GridTypeEnum.miss:
                     this.view.texture = this.sheet.getTexture("hitHole");
-                    TipsManager.addTips(this, "洞哦！",1);
+                    TipsManager.addTips(this, "洞哦！", 1);
+                    
                     break;
 
                 case GridTypeEnum.body:
@@ -52,6 +53,7 @@
             this.view.texture = this.sheet.getTexture("select");
             EffectUtils.blinkEffect(this.view);
         } else {
+            TipsManager.removeTips(this);
             this.view.texture = null;
         }
     }
@@ -82,10 +84,9 @@
                 PanelManager.gamePanel.selectedGrid = this;
             }
         } else {
-            this.statu = true;
             PanelManager.gamePanel.selectedGrid = null;
             this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
-            this.type = GameController.getInstance().getGridViewType(this.column, this.row);
+            this.statu = true;
         }
     }
 
@@ -106,6 +107,7 @@
     }
 
     set statu(value: boolean) {
+        this.type = GameController.getInstance().getGridViewType(this.column, this.row);
         this._statu = value;
         if (this._selected) {
             this._selected = false;

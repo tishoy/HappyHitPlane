@@ -99,8 +99,10 @@
 
     getGridViewType(column: number, row: number): number {
         var grid: GridData = MapData.getInstance().getMapGrid(column, row);
-        GameController.getInstance().logHitResult(grid.gridType);
-        RecordData.getInstance().recordStep(grid);
+        if (GameData.getInstance().keeping) {
+            GameController.getInstance().logHitResult(grid.gridType);
+            RecordData.getInstance().recordStep(grid);
+        }
         return grid.gridType;
 
     }

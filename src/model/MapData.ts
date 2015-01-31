@@ -4,7 +4,7 @@
     private columns: number = 9;     //number    横向是数字 1-9 即九列
     private rows: number = 9;        //letter    竖向是字母 A-I 即九行
     numPlane: number = 0;
-    map: GridData[];
+    map: GridData[] = [];
     private hasBadPlane:boolean = false;
 
     constructor() {
@@ -23,9 +23,10 @@
 
     initialize(): void {
         this.numPlane = 0;
-        this.map = new Array(this.columns * this.rows);
         this.map.length = this.columns * this.rows;
         for (var i = 0; i < this.map.length; i++) {
+            this.map[i] = new GridData();
+            this.map[i].gridValue = i;
             this.map[i].gridType = GridTypeEnum.miss;
         }
     }

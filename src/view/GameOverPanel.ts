@@ -1,7 +1,7 @@
 
 class GameOverPanel extends BasePanel{
 
-    public constructor(){
+    constructor(){
         super();
     }
 

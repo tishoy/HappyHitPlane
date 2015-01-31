@@ -1,7 +1,7 @@
 ﻿class RecordData {
     private static instance: RecordData;
 
-    private recordedStep: Array<StepData>;
+    private recordedStep: StepData[] = [];
     private currentStep: number;
     private wings: number; 
      private bottom: number; 
@@ -22,6 +22,10 @@
 
     initialize(): void {
 
+    }
+
+    clear() {
+        this.recordedStep = [];
     }
 
     recordStep(gridData:GridData): void {

@@ -15,14 +15,19 @@ class StartPanel extends BasePanel{
 
     private startBtn:EButton;
     private htmlTF:HtmlText;
-    private textTF:ETextField;
+    private textTF: ETextField;
+    private scrollPane: egret.ScrollView;
     // private inputTF:egret.TextField;
     // 初始化面板
     public initPanel():void{
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);   
-        this.bg.touchEnabled = true;   
+        this.bg.touchEnabled = true;
+
+        this.scrollPane = new egret.ScrollView(this.bg);
+
+        this.addChild(this.scrollPane);
 
         this.logoImg = new egret.Bitmap();
         this.logoImg.texture = this.assets.getTexture("logoImg");
@@ -32,6 +37,9 @@ class StartPanel extends BasePanel{
         this.logoImg.y = 60 + this.logoImg.height;
         this.addChild(this.logoImg);   
         this.logoImg.visible = false;
+
+        this.scrollPane.setContent(this.logoImg);
+        this.scrollPane.setScrollPosition(0, 0);
 
         this.advatureBtn = new EButton(this,"startBtn");
         this.advatureBtn.x = this.w / 2 - this.advatureBtn.width/2;
