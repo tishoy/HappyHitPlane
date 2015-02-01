@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 分享界面
  */
 class SharePanel extends BasePanel{
 

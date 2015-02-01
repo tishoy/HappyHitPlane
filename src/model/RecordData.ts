@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 录像数据
  */
 class RecordData {
     private static instance: RecordData;
@@ -34,6 +35,11 @@ class RecordData {
     recordStep(gridData:GridData): void {
         var stepData: StepData = new StepData();
         this.currentStep++;
+        stepData.step = this.currentStep;
+        stepData.row = gridData.row;
+        stepData.column = gridData.column;
+        stepData.grid = gridData.gridValue;
+        //stepData.weapon = WeaponData.getInstance();
         stepData.type = gridData.gridType;
         if (stepData.type == GridTypeEnum.body) {
             stepData.bodyType = gridData.bodyType;
@@ -58,7 +64,7 @@ class RecordData {
                 if (this.recordedStep[this.currentStep].bodyType == BodyGridEnum.bottom) {
                     this.bottom++;
                     if (this.bottom == 3 && this.currentStep < 10) {
-                        //获得翠菊之手的成就
+                        //获得摧菊之手的成就
                     }
                 }
                 break;

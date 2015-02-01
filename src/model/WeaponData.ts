@@ -1,11 +1,13 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 玩家武器装备道具
  */
 class WeaponData extends egret.EventDispatcher {
     private static instance: WeaponData;
 
     private radar: number = 0;
     private fireBoom:number = 0;
+    private angryBird:number = 0;
 
     constructor() {
         super();

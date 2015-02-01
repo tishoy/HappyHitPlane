@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 游戏主界面
  */
 class GamePanel extends BasePanel{
 

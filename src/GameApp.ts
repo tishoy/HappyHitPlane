@@ -28,7 +28,7 @@ class GameApp extends egret.DisplayObjectContainer {
         RES.loadGroup("loading");
     }
     /**
-     * preload��Դ����������
+     * preload 资源加载完成，第一次加载loading界面的资源。 loading时会加载整个资源。
      */
     private onResourceLoadComplete(event: RES.ResourceEvent): void {
         if (event.groupName == "preload") {

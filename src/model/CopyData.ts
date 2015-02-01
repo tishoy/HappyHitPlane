@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 副本数据
  */
 class CopyData {
     private static instance: CopyData;

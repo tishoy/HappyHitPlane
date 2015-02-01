@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 身体枚举，需要与DirectionTypeEnum搭配使用
  */
 class BodyGridEnum {
     static bone: number = 1;

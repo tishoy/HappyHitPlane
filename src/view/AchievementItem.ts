@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 成就项
  */
 class AchievementItem extends egret.Sprite{
     

@@ -1,5 +1,7 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 游戏主数据
+ * 这里并未使用dily提供的GlobalData，因为所需数据多且分散，所以使用许多Data分别记录。
  */
 class GameData{
     private static instance: GameData;

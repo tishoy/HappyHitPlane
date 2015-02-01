@@ -1,5 +1,7 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 方向枚举
+ * 通过方向获取身体位置
  */
 class DirectionTypeEnum{
     static directionList:number[] = [27, -3, -27, 3];

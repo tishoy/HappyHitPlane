@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 尚未使用
  */
 class GameOverPanel extends BasePanel{
 

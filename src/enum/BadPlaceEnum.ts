@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 坏飞机枚举
  */
 class BadPlaceEnum {
     /**

@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 地图数据
  */
 class MapData {
     private static instance:MapData;

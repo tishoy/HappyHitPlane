@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 游戏类型枚举
  */
 class GameModelEnum {
     /**

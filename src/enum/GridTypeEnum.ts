@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 格子类型枚举
  */
 class GridTypeEnum {
     /**

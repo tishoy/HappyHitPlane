@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * SDK界面
  */
 class JsSdkPanel extends BasePanel{
 

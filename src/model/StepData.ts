@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 每一步数据
  */
 class StepData{
     step: number;
@@ -8,6 +9,5 @@ class StepData{
     grid: number;
     type: number;
     bodyType:number;
-    item: number;
-    copy: number;
-} 
+    weapon: number;
+}

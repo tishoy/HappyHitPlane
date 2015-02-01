@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 游戏主控制器   另外的控制器在core中的Globel
  */
 class GameController {
     private static instance: GameController;

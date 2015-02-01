@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 主界面每个格子
  */
 class GridView extends egret.Sprite{
     private _selected:boolean;    //
@@ -36,19 +37,22 @@ class GridView extends egret.Sprite{
                 case GridTypeEnum.miss:
                     this.view.texture = this.sheet.getTexture("hitHole");
                     TipsManager.addTips(this, "洞哦！", 1);
-                    
                     break;
 
                 case GridTypeEnum.body:
                     this.view.texture = this.sheet.getTexture("hitBody");
-                    EffectUtils.shakeObj(this.view);
-                    TipsManager.addTips(this, "身子呀！", 2);
+                    if(GameData.getInstance().keeping){
+                        EffectUtils.shakeObj(this.view);
+                        TipsManager.addTips(this, "身子呀！", 2);
+                    }
                     break;
 
                 case GridTypeEnum.head:
                     this.view.texture = this.sheet.getTexture("hitHead");
-                    EffectUtils.shakeScreen(1);
-                    TipsManager.addTips(this,"脑瓜子！",3);
+                    if(GameData.getInstance().keeping) {
+                        EffectUtils.shakeScreen(1);
+                        TipsManager.addTips(this, "脑瓜子！", 3);
+                    }
                     break;
             }
         } else if (this.selected) {

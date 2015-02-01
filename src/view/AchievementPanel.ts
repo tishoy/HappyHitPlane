@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 成就界面
  */
 class AchievementPanel extends BasePanel{
      private scrollPane: egret.ScrollView;
@@ -8,10 +9,13 @@ class AchievementPanel extends BasePanel{
     constructor() {
         super();
 //         this.scrollPane = new egret.ScrollView(scrollContainter);
-         this.initView();
+         this.initPanel();
      }
 
-    initView(): void {
+    /**
+     * 对滑动面板测试，效果不佳
+     */
+    initPanel(): void {
         this.scrollPane = new egret.ScrollView();
         var achievementData: string[] = RES.getRes("description");
         var item: AchievementItem;

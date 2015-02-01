@@ -1,5 +1,6 @@
 /**
  * Created by tishoy on 15/1/31.
+ * 每个格子数据
  */
 class GridData {
     private _row: number;
