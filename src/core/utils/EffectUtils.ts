@@ -74,7 +74,7 @@ module EffectUtils {
     //抖动对象特效
     // 1：抖动  2：震动
     export function shakeScreen(effectType:number = 1):void{
-        var panel = GameConfig.curPanel;
+        var panel = PanelManager.gamePanel;
         var shakeNum = 40;
         var oldX:number = panel.x;
         var oldY:number = panel.y;

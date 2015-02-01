@@ -10,17 +10,8 @@ class StartPanel extends BasePanel{
 
     private bg:egret.Bitmap;
     private logoImg:egret.Bitmap;
-    private setBtn:EButton;
-    private helpBtn:EButton;
-    private shopBtn:EButton;
-    private fbBtn: EButton;
     private advatureBtn:EButton;
-
     private startBtn:EButton;
-    private htmlTF:HtmlText;
-    private textTF: ETextField;
-    private scrollPane: egret.ScrollView;
-    // private inputTF:egret.TextField;
     // 初始化面板
     public initPanel():void{
         this.bg = new egret.Bitmap();
@@ -51,6 +42,7 @@ class StartPanel extends BasePanel{
         this.startBtn.visible = false;
         this.startBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCommanBtnTouchTap, this); 
 
+        /*
         this.helpBtn = new EButton(this,"helpBtn",null,"相机",30,1);
         this.helpBtn.x = 20;
         this.helpBtn.y = this.h - this.helpBtn.height - 20;
@@ -89,7 +81,7 @@ class StartPanel extends BasePanel{
         this.addChild(this.textTF);
 
         var toggleSwitch = new EToggleSwitch(this,"switchOff","switchOn","switchBar");
-        //this.addChild(toggleSwitch);
+        //this.addChild(toggleSwitch);*/
 
         this.initEffect();
 
@@ -104,10 +96,6 @@ class StartPanel extends BasePanel{
         this.logoImg.y = -350;
         this.startBtn.alpha = 0;
         this.advatureBtn.alpha = 0;
-        this.helpBtn.y = this.h + 150;
-        this.shopBtn.y = this.h + 150;
-        this.fbBtn.y = this.h + 150;
-        this.setBtn.y = this.h + 150;
         var onComplete:Function = function(){
             egret.Tween.get(this.startBtn).to({ alpha: 1 }, 300);
             egret.Tween.get(this.advatureBtn).to({ alpha: 1 }, 300);
@@ -119,10 +107,6 @@ class StartPanel extends BasePanel{
         this.logoImg.visible = true;
         this.startBtn.visible = true;
         this.advatureBtn.visible = true;
-        this.helpBtn.visible = true;
-        this.shopBtn.visible = true;
-        this.fbBtn.visible = true;
-        this.setBtn.visible = true;
         egret.Tween.get(this.logoImg).to({y:60 + this.logoImg.height},600,egret.Ease.backOut).call(onComplete,this);   
     }
 
@@ -140,10 +124,6 @@ class StartPanel extends BasePanel{
 
     onShopTouchTap(e:egret.TouchEvent):void{
         Global.share();
-    }
-
-    public onFbTouchTap(e:egret.TouchEvent):void{
-        EffectUtils.shakeObj(this.fbBtn);
     }
 
     public onSetTouchTap(e:egret.TouchEvent):void{

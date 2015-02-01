@@ -132,24 +132,6 @@ class GamePanel extends BasePanel{
         this.lastStepNum.y = 181;
         this.addChild(this.lastStepNum);
 
-        this.shopBtn2 = new EButton(this,"shopBtn",this.alert2,"",30,2);
-        this.shopBtn2.x = 150;
-        this.shopBtn2.y = 200;
-        //this.addChild(this.shopBtn2);   
-        this.shopBtn2.alpha = 0;
-
-        this.fbBtn2 = new EButton(this,"fbBtn",this.alert3,"",30,3);
-        this.fbBtn2.x = 270;
-        this.fbBtn2.y = 200;
-        //this.addChild(this.fbBtn2);  
-        this.fbBtn2.alpha = 0; 
-
-        this.setBtn2 = new EButton(this,"setBtn",this.alert4,"设置",30,1);
-        this.setBtn2.x = this.w - this.setBtn2.width - 20;
-        this.setBtn2.y = 200;
-        //this.addChild(this.setBtn2); 
-        this.setBtn2.alpha = 0;  
-
         this.startBtn = new EButton(this,"startBtn",this.onStartBtnTouchTap);
         this.startBtn.x = this.w/2 - this.startBtn.width/2;
         this.startBtn.y = this.h/2 - this.startBtn.height/2;        
@@ -211,7 +193,6 @@ class GamePanel extends BasePanel{
             this.mapName.visible = true;
             this.lastStepLabel.visible = true;
             this.lastStepNum.visible = true;
-//            this.mapName.setText("地图名称：" + this.gameData.mapName);
             if (e.type == GameEvent.GAME_START) {
                 this.mapName.setText("");
                 EffectUtils.typerEffect(this.mapName, "地图名称：" + this.gameData.mapName);
@@ -224,7 +205,7 @@ class GamePanel extends BasePanel{
         }
     }
 
-    onVictory(e: GameEvent): void {
+    private onVictory(e: GameEvent): void {
         if (this.gameData.model == GameModelEnum.common) {
             RES.getResAsync("description", this.startAnimation, this);
         } else if (this.gameData.model == GameModelEnum.advanture) {
@@ -232,13 +213,18 @@ class GamePanel extends BasePanel{
         }
     }
 
+    private onLost(e: GameEvent):void{
+        console.log("收到事件");
+        Global.alert("提示", "任务失败, 请从新再来", this.onThisCopyConfirm, 2);
+    }
+
     private onNextCopyConfirm(): void {
         GameController.getInstance().nextCopy();
     }
 
     private onNextCopyCancel(): void {
-        Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
         Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
+        Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
     }
 
     private startAnimation(result: Array<any>): void {
@@ -262,29 +248,12 @@ class GamePanel extends BasePanel{
     }
 
     private goonCommonGame(): void {
-        
-    }
-
-    private onLost():void{
-        Global.alert("提示", "任务失败, 请从新再来", this.onThisCopyConfirm, 2);
+        GameController.getInstance().commonGame();
     }
 
     private onThisCopyConfirm(): void {
-        
+        GameController.getInstance().startCopy();
     }
-
-    private alert2():void{
-        Global.alert("提示","我是一个提示栗子，哈哈",null,2);
-    }
-
-    private alert3():void{
-        Global.alert("提示","我是一个提示栗子，哈哈",null,3);
-    }
-
-    private alert4():void{
-        Global.alert("提示","我是一个提示栗子，哈哈",null,4);
-    }
-
 
     private initEffect():void{
 //        this.htmlTF.y = -350;

@@ -34,22 +34,19 @@ class GridView extends egret.Sprite{
             switch (this.type) {
                 case GridTypeEnum.miss:
                     this.view.texture = this.sheet.getTexture("hitHole");
-                    TipsManager.addTips(this, "洞哦！", 1);
                     break;
 
                 case GridTypeEnum.body:
                     this.view.texture = this.sheet.getTexture("hitBody");
-                    if(GameData.getInstance().keeping){
+                    if (GameData.getInstance().keeping) {
                         EffectUtils.shakeObj(this.view);
-                        TipsManager.addTips(this, "身子呀！", 2);
                     }
                     break;
 
                 case GridTypeEnum.head:
                     this.view.texture = this.sheet.getTexture("hitHead");
-                    if(GameData.getInstance().keeping) {
-                        EffectUtils.shakeScreen(1);
-                        TipsManager.addTips(this, "脑瓜子！", 3);
+                    if (GameData.getInstance().keeping) {
+                        EffectUtils.shakeScreen();
                     }
                     break;
             }
@@ -58,23 +55,23 @@ class GridView extends egret.Sprite{
             EffectUtils.blinkEffect(this.view);
         } else {
             this.view.texture = null;
+            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
         }
     }
 
     private onReset(e: GameEvent): void {
         if (e.type == GameEvent.GAME_RESET) {
             this.statu = false;
-            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
         }
     }
 
     private onEnd(e: GameEvent): void {
         TipsManager.removeTips(this);
+        console.log(81);
         if (e.type == GameEvent.GAME_VICTORY) {
             this.statu = true;
-            this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
         } else if (e.type == GameEvent.GAME_LOST){
-            this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
+
         }
     }
 
@@ -89,7 +86,6 @@ class GridView extends egret.Sprite{
             }
         } else {
             PanelManager.gamePanel.selectedGrid = null;
-            this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
             this.statu = true;
         }
     }
@@ -116,6 +112,7 @@ class GridView extends egret.Sprite{
         if (this._selected) {
             this._selected = false;
         }
+        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
         this.updateView();
     }
 } 

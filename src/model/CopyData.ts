@@ -4,10 +4,10 @@
  */
 class CopyData {
     private static instance: CopyData;
+    currentCopy:number;
     copyStarList: number[];
 
     constructor() {
-//        super();
         if (CopyData.instance) {
             throw new Error("single instance error");
         }
@@ -22,6 +22,16 @@ class CopyData {
     }
 
     initialize(): void {
+        this.currentCopy = 0;
+        this.copyStarList = [];
+    }
 
+    saveCopyStar(star:number): void{
+
+    }
+
+    nextCopy(): void{
+        this.currentCopy++;
+        //this.copyStart(this.currentCopy);
     }
 } 
