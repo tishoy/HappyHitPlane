@@ -10,8 +10,6 @@ class GridView extends egret.Sprite{
     sheet:egret.SpriteSheet;
     row;
     column;
-    //特效
-    private scaleRate:number;
 
     constructor() {
         super();
@@ -65,13 +63,13 @@ class GridView extends egret.Sprite{
 
     private onReset(e: GameEvent): void {
         if (e.type == GameEvent.GAME_RESET) {
-            TipsManager.removeTips(this);
             this.statu = false;
             this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
         }
     }
 
     private onEnd(e: GameEvent): void {
+        TipsManager.removeTips(this);
         if (e.type == GameEvent.GAME_VICTORY) {
             this.statu = true;
             this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
