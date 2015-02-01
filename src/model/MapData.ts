@@ -1,4 +1,4 @@
-﻿class MapData {
+class MapData {
     private static instance:MapData;
 
     private columns: number = 9;     //number    横向是数字 1-9 即九列

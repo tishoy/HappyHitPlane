@@ -1,4 +1,4 @@
-﻿/**
+/**
   * 图片button类
   * by dily
   * (c) copyright 2014 - 2035

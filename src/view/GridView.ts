@@ -1,8 +1,7 @@
-﻿class GridView extends egret.Sprite{
+class GridView extends egret.Sprite{
     private _selected:boolean;    //
     private _statu: boolean;  //0为关闭，1为打开
     private type:number;
-    contentGroup: egret.gui.Group;
     view: egret.Bitmap;
     sheet:egret.SpriteSheet;
     row;
@@ -53,13 +52,13 @@
             this.view.texture = this.sheet.getTexture("select");
             EffectUtils.blinkEffect(this.view);
         } else {
-            TipsManager.removeTips(this);
             this.view.texture = null;
         }
     }
 
     private onReset(e: GameEvent): void {
         if (e.type == GameEvent.GAME_RESET) {
+            TipsManager.removeTips(this);
             this.statu = false;
             this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouch, this);
         }

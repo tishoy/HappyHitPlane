@@ -1,7 +1,7 @@
 
 class GameApp extends egret.DisplayObjectContainer {
     /**
-     * ¼ÓÔØ½ø¶È½çÃæ
+     * ï¿½ï¿½ï¿½Ø½ï¿½ï¿½È½ï¿½ï¿½ï¿½
      */
     private loadingPanel:LoadingPanel;
     public constructor() {
@@ -14,12 +14,12 @@ class GameApp extends egret.DisplayObjectContainer {
 
         this.addChild(GameConfig.gameScene());
 
-        //³õÊ¼»¯Resource×ÊÔ´¼ÓÔØ¿â
+        //ï¿½ï¿½Ê¼ï¿½ï¿½Resourceï¿½ï¿½Ô´ï¿½ï¿½ï¿½Ø¿ï¿½
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         RES.loadConfig("resource/resource.json", "resource/");
     }
     /**
-     * ÅäÖÃÎÄ¼þ¼ÓÔØÍê³É,¿ªÊ¼Ô¤¼ÓÔØpreload×ÊÔ´×é¡£
+     * ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ê¼Ô¤ï¿½ï¿½ï¿½ï¿½preloadï¿½ï¿½Ô´ï¿½é¡£
      */
     private onConfigComplete(event: RES.ResourceEvent): void {
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
@@ -28,7 +28,7 @@ class GameApp extends egret.DisplayObjectContainer {
         RES.loadGroup("loading");
     }
     /**
-     * preload×ÊÔ´×é¼ÓÔØÍê³É
+     * preloadï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     private onResourceLoadComplete(event: RES.ResourceEvent): void {
         if (event.groupName == "preload") {
@@ -44,7 +44,7 @@ class GameApp extends egret.DisplayObjectContainer {
 
     }
     /**
-     * preload×ÊÔ´×é¼ÓÔØ½ø¶È
+     * preloadï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½
      */
     private onResourceProgress(event: RES.ResourceEvent): void {
         if (event.groupName == "preload") {
@@ -53,7 +53,7 @@ class GameApp extends egret.DisplayObjectContainer {
     }
 
     /**
-     * ´´½¨ÓÎÏ·³¡¾°
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
      */
     private createGameScene(): void {
         PanelManager.initPanel();
@@ -73,7 +73,7 @@ class GameApp extends egret.DisplayObjectContainer {
         }
         Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
 
-        //Global.shareToWeiXin("EGER¼«ËÙ¿ª·¢¿ò¼Ü", "EGERÔÚÊÖÌìÏÂÎÒÓÐ£¡¿ìÀ´»ñÈ¡ÑÝÊ¾°¸Àý°É£¡", "http://wx.9ria.com/games/eger", "http://wx.9ria.com/games/eger/resource/assets/icon.png");
+        //Global.shareToWeiXin("EGERï¿½ï¿½ï¿½Ù¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "EGERï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½", "http://wx.9ria.com/games/eger", "http://wx.9ria.com/games/eger/resource/assets/icon.png");
     }
 
 }

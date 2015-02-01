@@ -1,4 +1,4 @@
-﻿class StepData{
+class StepData{
     step: number;
     column:number;
     row: number;

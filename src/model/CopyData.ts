@@ -1,4 +1,4 @@
-﻿class CopyData {
+class CopyData {
     private static instance: CopyData;
     copyStarList: number[];
 

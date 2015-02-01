@@ -1,4 +1,4 @@
-﻿class GameModelEnum {
+class GameModelEnum {
     /**
       *  还没有选择
       */

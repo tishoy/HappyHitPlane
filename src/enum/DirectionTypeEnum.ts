@@ -1,4 +1,4 @@
-﻿class DirectionTypeEnum{
+class DirectionTypeEnum{
     static directionList:number[] = [27, -3, -27, 3];
     /**
       *  上

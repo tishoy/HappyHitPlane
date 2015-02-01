@@ -1,4 +1,4 @@
-﻿class GameData{
+class GameData{
     private static instance: GameData;
     public model: number;
     private _keeping:boolean = false;

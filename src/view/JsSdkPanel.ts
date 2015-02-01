@@ -1,4 +1,4 @@
-/*
+
 class JsSdkPanel extends BasePanel{
 
     public constructor(){
@@ -84,5 +84,4 @@ class JsSdkPanel extends BasePanel{
 
 
 }
-*/
 

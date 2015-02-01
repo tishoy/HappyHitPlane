@@ -1,4 +1,4 @@
-﻿class RecordData {
+class RecordData {
     private static instance: RecordData;
 
     private recordedStep: StepData[] = [];

@@ -1,4 +1,4 @@
-﻿class BodyGridEnum {
+class BodyGridEnum {
     static bone: number = 1;
     static wing: number = 6;
     static tail: number = 7;

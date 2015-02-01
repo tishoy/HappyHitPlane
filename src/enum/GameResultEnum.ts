@@ -1,4 +1,4 @@
-﻿class GameResultEnum {
+class GameResultEnum {
     /**
       *  胜利
       */

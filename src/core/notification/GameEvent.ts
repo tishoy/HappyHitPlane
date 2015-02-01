@@ -1,4 +1,4 @@
-﻿class GameEvent extends egret.Event {
+class GameEvent extends egret.Event {
     static GAME_START: string = "game_start";
     static GAME_CONTINUE: string = "game_continue";
     static GAME_VICTORY: string = "game_victory";

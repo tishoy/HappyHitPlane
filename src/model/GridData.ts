@@ -1,4 +1,4 @@
-﻿class GridData {
+class GridData {
     private _row: number;
     private _column: number;
     private _gridValue: number;

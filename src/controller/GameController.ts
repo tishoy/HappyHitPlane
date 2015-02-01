@@ -1,4 +1,4 @@
-﻿class GameController {
+class GameController {
     private static instance: GameController;
 
     private mapData: MapData;

@@ -1,4 +1,4 @@
-﻿class GridTypeEnum {
+class GridTypeEnum {
     /**
       *  格子空
       */

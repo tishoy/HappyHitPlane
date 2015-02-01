@@ -1,4 +1,4 @@
-﻿class BadPlaceEnum {
+class BadPlaceEnum {
     /**
       *  可能会导致无法放置三架飞机的格子的飞机头   //需要与身子确定方向
       */
