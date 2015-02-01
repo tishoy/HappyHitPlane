@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class AchievementPanel extends BasePanel{
      private scrollPane: egret.ScrollView;
      private itemList:AchievementItem[];

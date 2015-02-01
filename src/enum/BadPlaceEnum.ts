@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class BadPlaceEnum {
     /**
       *  可能会导致无法放置三架飞机的格子的飞机头   //需要与身子确定方向

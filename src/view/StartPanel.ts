@@ -1,4 +1,6 @@
-
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class StartPanel extends BasePanel{
 
     constructor(){

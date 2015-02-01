@@ -1,4 +1,6 @@
-
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class SharePanel extends BasePanel{
 
     public constructor(){

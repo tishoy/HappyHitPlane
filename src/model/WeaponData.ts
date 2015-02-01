@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class WeaponData extends egret.EventDispatcher {
     private static instance: WeaponData;
 

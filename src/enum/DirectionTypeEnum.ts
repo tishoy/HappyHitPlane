@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class DirectionTypeEnum{
     static directionList:number[] = [27, -3, -27, 3];
     /**

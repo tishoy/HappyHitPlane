@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class BodyGridEnum {
     static bone: number = 1;
     static wing: number = 6;

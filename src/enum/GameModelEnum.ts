@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class GameModelEnum {
     /**
       *  还没有选择

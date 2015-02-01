@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class AchievementItem extends egret.Sprite{
     
     private bg:egret.Bitmap;

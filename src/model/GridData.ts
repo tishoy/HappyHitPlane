@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class GridData {
     private _row: number;
     private _column: number;

@@ -1,7 +1,7 @@
 
 class GameApp extends egret.DisplayObjectContainer {
     /**
-     * ���ؽ��Ƚ���
+     * 游戏文档类
      */
     private loadingPanel:LoadingPanel;
     public constructor() {
@@ -14,12 +14,12 @@ class GameApp extends egret.DisplayObjectContainer {
 
         this.addChild(GameConfig.gameScene());
 
-        //��ʼ��Resource��Դ���ؿ�
+        //资源加载监听
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         RES.loadConfig("resource/resource.json", "resource/");
     }
     /**
-     * �����ļ���������,��ʼԤ����preload��Դ�顣
+     * 配置文件加载完成
      */
     private onConfigComplete(event: RES.ResourceEvent): void {
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
@@ -44,7 +44,7 @@ class GameApp extends egret.DisplayObjectContainer {
 
     }
     /**
-     * preload��Դ�����ؽ���
+     * preload进度
      */
     private onResourceProgress(event: RES.ResourceEvent): void {
         if (event.groupName == "preload") {
@@ -53,7 +53,7 @@ class GameApp extends egret.DisplayObjectContainer {
     }
 
     /**
-     * ������Ϸ����
+     * 创建游戏界面
      */
     private createGameScene(): void {
         PanelManager.initPanel();

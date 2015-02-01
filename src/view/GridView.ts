@@ -1,3 +1,6 @@
+/**
+ * Created by tishoy on 15/1/31.
+ */
 class GridView extends egret.Sprite{
     private _selected:boolean;    //
     private _statu: boolean;  //0为关闭，1为打开
