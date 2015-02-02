@@ -23,4 +23,8 @@ class GridTypeEnum {
       *  金币    //打算设置在角落里
       */
     static gold: number = 4;
+    /**
+     * 传送点
+     */
+    static teleport:number = 5;
 } 

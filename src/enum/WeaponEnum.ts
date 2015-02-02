@@ -22,6 +22,9 @@ class WeaponEnum{
      * * @type {number[]}
      */
     static angryBird:number[] = [-1, -9, +1, +1, +9, +9, -1, -1];
-
-
+    /**
+     * 飞毛腿
+     * 一次性 击中就沉
+     */
+    static scud:number = 0;
 } 

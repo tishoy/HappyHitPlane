@@ -219,7 +219,8 @@ class GamePanel extends BasePanel{
     }
 
     private onNextCopyConfirm(): void {
-        GameController.getInstance().nextCopy();
+        CopyData.getInstance().nextCopy();
+        GameController.getInstance().startCopy();
     }
 
     private onNextCopyCancel(): void {

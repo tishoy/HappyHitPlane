@@ -14,9 +14,6 @@ class GameData{
     mapName:string;
     private _lastSetp: number;
     private _result: number;
-    oneStar:number;
-    doubleStar:number;
-    tripleStar: number;
 
     constructor() {
         if (GameData.instance) {
@@ -95,15 +92,7 @@ class GameData{
                 if (this.headTimes == 3) {
                     this._result = GameResultEnum.victory;
                     GameController.getInstance().endGame();
-                    if (this._lastSetp >= 0) {
-                        if (this._lastSetp > this.oneStar - this.doubleStar) {
-                            if (this._lastSetp > this.oneStar - this.tripleStar) {
-                                CopyData.getInstance().saveCopyStar(3);
-                            }
-                            CopyData.getInstance().saveCopyStar(2);
-                        }
-                        CopyData.getInstance().saveCopyStar(1);
-                    }
+                    CopyData.getInstance().saveCopyStar(this._lastSetp);
                     Global.dispatchEvent(GameEvent.GAME_VICTORY,null,false);
                 } else if (this.model == GameModelEnum.advanture && this.lastStep == 0) {
                     console.log("3");

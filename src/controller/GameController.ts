@@ -7,9 +7,8 @@ class GameController {
 
     private mapData: MapData;
     private gameData:GameData;
+    private copyData:CopyData;
     private random: boolean = true;
-    private copyList:Array<any>;
-    private copy:number = 0;
 
     constructor() {
         if (GameController.instance) {
@@ -26,16 +25,9 @@ class GameController {
     }
 
     initialize(): void {
-        this.copy = 0;
         this.mapData = MapData.getInstance();
         this.gameData = GameData.getInstance();
-        if (localStorage.getItem("adventureCopy")) {
-            this.copy = localStorage.getItem("adventureCopy");
-        } else {
-            this.copy = 0;
-        }
-        this.copyList = RES.getRes("copy");
-        this.initMap();
+        this.copyData = CopyData.getInstance();
     }
 
     initMap():void {
@@ -48,29 +40,29 @@ class GameController {
         this.gameData.model = GameModelEnum.advanture;
         this.gameData.keeping = false;
         if (copy == 0) {
-            this.loadMap(this.copy);
+            this.loadMap(CopyData.getInstance().currentCopy);
         } else {
             this.loadMap(copy);
         }
     }
 
     nextCopy(): void {
-        this.copy++;
-        this.startCopy(this.copy);
-        //localStorage.setItem("advantureCopy", this.copy.toString());
+        //this.copy++;
+        //this.startCopy(this.copy);
+        //NativeApi.setLocalData("copy", this.copy.toString());
     }
 
     loadMap(copy:number):void {
-        var currentMap: any = this.copyList[copy];
+        var currentMap: any = this.copyData.copyList[copy];
         this.gameData.mapName = currentMap.name;
         var headList:Array<number> = currentMap.head;
         var directionList:Array<number> = currentMap.direction;
         var lightList: Array<number> = currentMap.light;
         var starList: Array<number> = currentMap.step;
         this.gameData.lastStep = starList[0];
-        this.gameData.oneStar = starList[0];
-        this.gameData.doubleStar = starList[1];
-        this.gameData.tripleStar = starList[2];
+        this.copyData.oneStar = starList[0];
+        this.copyData.doubleStar = starList[1];
+        this.copyData.tripleStar = starList[2];
         for (var i = 0; i < headList.length; i++) {
             this.mapData.setPlaneGridByHead(headList[i], directionList[i]);
         }

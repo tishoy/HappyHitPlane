@@ -11,4 +11,8 @@ class GameResultEnum {
       *  失败
       */
     static lost: number = 1;
+    /**
+     * 传送结束
+     */
+    static transform: number = 3;
 } 
