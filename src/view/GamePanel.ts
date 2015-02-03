@@ -3,27 +3,11 @@
  * 游戏主界面
  */
 class GamePanel extends BasePanel{
-
-    constructor(){
-        super();
-    }
+    selectedGrid:GridView;
 
     private gameData:GameData;
     private map:egret.Bitmap;
     private bg:egret.Bitmap;
-    private startBtn:EButton;
-    private setBtn:EButton;
-    private helpBtn:EButton;
-    private shopBtn:EButton;
-    private fbBtn:EButton;
-
-    private setBtn2:EButton;
-    private helpBtn2:EButton;
-    private shopBtn2:EButton;
-    private fbBtn2:EButton;
-
-    selectedGrid:GridView;
-
     private mapName: ETextField;
     private headTimesLabel: ETextField;
     private headNum: egret.BitmapText;
@@ -33,11 +17,18 @@ class GamePanel extends BasePanel{
     private hitNum: egret.BitmapText;
     private lastStepLabel: ETextField;
     private lastStepNum: egret.BitmapText;
-    private typerTF: ETextField;
+    private radarButton:EToggleButton;
+    private fireButton:EToggleButton;
+    private birdButton:EToggleButton;
 
-    private items:ETabBar;
+    constructor(){
+        super();
+    }
+
     // 初始化面板
     initPanel():void{
+        this.gameData = GameData.getInstance();
+
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);   
@@ -45,7 +36,6 @@ class GamePanel extends BasePanel{
 
         this.map = new egret.Bitmap(RES.getRes("mapView").getTexture("grid"));
         this.map.x = 0;
-        this.map.y = 300;
         this.addChild(this.map);
 
         var grid: GridView;
@@ -66,6 +56,7 @@ class GamePanel extends BasePanel{
         this.mapName.width = 370;
         this.mapName.x = 100;
         this.mapName.y = 30;
+        this.mapName.visible = false
         this.addChild(this.mapName);
 
         this.headTimesLabel = new ETextField();
@@ -76,12 +67,14 @@ class GamePanel extends BasePanel{
         this.headTimesLabel.setText("爆头次数");
         this.headTimesLabel.x = 38;
         this.headTimesLabel.y = 140;
+        this.headTimesLabel.visible = false;
         this.addChild(this.headTimesLabel);
 
         this.headNum = new egret.BitmapText();
         this.headNum.spriteSheet = RES.getRes("font_json");
         this.headNum.x = 178;
         this.headNum.y = 131;
+        this.headNum.visible = false;
         this.addChild(this.headNum);
 
         this.bodyTimesLabel = new ETextField();
@@ -92,12 +85,14 @@ class GamePanel extends BasePanel{
         this.bodyTimesLabel.setText("击中次数");
         this.bodyTimesLabel.x = 220;
         this.bodyTimesLabel.y = 140;
+        this.bodyTimesLabel.visible = false;
         this.addChild(this.bodyTimesLabel);
 
         this.bodyNum = new egret.BitmapText();
         this.bodyNum.spriteSheet = RES.getRes("font_json");
         this.bodyNum.x = 360;
         this.bodyNum.y = 131;
+        this.bodyNum.visible = false;
         this.addChild(this.bodyNum);
 
         this.hitTimesLabel = new ETextField();
@@ -108,12 +103,14 @@ class GamePanel extends BasePanel{
         this.hitTimesLabel.setText("射击次数");
         this.hitTimesLabel.x = 185;
         this.hitTimesLabel.y = 83;
+        this.hitTimesLabel.visible = false;
         this.addChild(this.hitTimesLabel);
 
         this.hitNum = new egret.BitmapText();
         this.hitNum.spriteSheet = RES.getRes("font_json");
         this.hitNum.x = 325;
         this.hitNum.y = 74;
+        this.hitNum.visible = false;
         this.addChild(this.hitNum);
 
         this.lastStepLabel = new ETextField();
@@ -124,65 +121,34 @@ class GamePanel extends BasePanel{
         this.lastStepLabel.setText("剩余次数");
         this.lastStepLabel.x = 120;
         this.lastStepLabel.y = 190;
+        this.lastStepLabel.visible = false;
         this.addChild(this.lastStepLabel);
 
         this.lastStepNum = new egret.BitmapText();
         this.lastStepNum.spriteSheet = RES.getRes("font_json");
         this.lastStepNum.x = 260;
         this.lastStepNum.y = 181;
+        this.lastStepNum.visible = false;
         this.addChild(this.lastStepNum);
-
-        this.startBtn = new EButton(this,"startBtn",this.onStartBtnTouchTap);
-        this.startBtn.x = this.w/2 - this.startBtn.width/2;
-        this.startBtn.y = this.h/2 - this.startBtn.height/2;        
-        //this.addChild(this.startBtn);
-        this.startBtn.visible = false;
-
-        this.helpBtn = new EButton(this,"helpBtn",null,"",30,1);
-        this.helpBtn.x = 20;
-        this.helpBtn.y = this.h - this.helpBtn.height - 20;
-        //this.addChild(this.helpBtn);   
-        this.helpBtn.visible = false;
-
-        this.shopBtn = new EButton(this,"shopBtn",null,"",30,2);
-        this.shopBtn.x = 150;
-        this.shopBtn.y = this.h - this.shopBtn.height - 20;
-        //this.addChild(this.shopBtn);   
-        this.shopBtn.visible = false;
-
-        this.fbBtn = new EButton(this,"fbBtn",null,"",30,3);
-        this.fbBtn.x = 270;
-        this.fbBtn.y = this.h - this.fbBtn.height - 20;
-        //this.addChild(this.fbBtn);   
-        this.fbBtn.visible = false;
-
-        this.setBtn = new EButton(this,"setBtn",null,"设置",30,1);
-        this.setBtn.x = this.w - this.setBtn.width - 20;
-        this.setBtn.y = this.h - this.setBtn.height - 20;
-        //this.addChild(this.setBtn);   
-        this.setBtn.visible = false;
 
         //TipsManager.addTips(this.helpBtn,"我是排行榜按钮哦！",1);
         //TipsManager.addTips(this.shopBtn,"我是商店按钮哦！",2);
         //TipsManager.addTips(this.fbBtn,"我是facebook按钮哦！",3);
         //TipsManager.addTips(this.setBtn,"我是设置按钮哦！",4);
-        
-        this.items = new ETabBar(this, "cancelBtn", "acceptBtn", this.tabBarCallBack, ["导弹", "雷达", "燃烧"], 20);
-        this.items.x = this.w / 2;
-        this.items.y = 240;
-        this.items.setSelectedIndex(2);
-//        this.addChild(this.items);
 
+        //this.radarButton.setSelected(false);
+        //this.fireButton.setSelected(false);
+        //this.birdButton.setSelected(false);
+
+        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
+    }
+
+    private onAdded(e:egret.Event){
         this.initEffect();
-        this.gameData = GameData.getInstance();
         Global.addEventListener(GameEvent.GAME_CONTINUE, this.updateHitTimes, this);
         Global.addEventListener(GameEvent.GAME_START, this.updateHitTimes, this);
         Global.addEventListener(GameEvent.GAME_VICTORY, this.onVictory, this);
         Global.addEventListener(GameEvent.GAME_LOST, this.onLost, this);
-    }
-
-    private tabBarCallBack(e) {
-//        this.items.setSelectedIndex();
     }
 
     private updateHitTimes(e: GameEvent): void {
@@ -257,40 +223,40 @@ class GamePanel extends BasePanel{
     }
 
     private initEffect():void{
-//        this.htmlTF.y = -350;
-        this.startBtn.alpha = 0;
-        this.helpBtn.y = this.h + 150;
-        this.shopBtn.y = this.h + 150;
-        this.fbBtn.y = this.h + 150;
-        this.setBtn.y = this.h + 150;
+        this.headTimesLabel.alpha = 0;
+        this.headNum.alpha = 0;
+        this.bodyTimesLabel.alpha = 0;
+        this.bodyNum.alpha = 0;
+        this.hitTimesLabel.alpha = 0;
+        this.hitNum.alpha = 0;
+        this.lastStepLabel.alpha =0;
+        this.lastStepNum.alpha = 0;
         var onComplete:Function = function(){
-            egret.Tween.get(this.startBtn).to({alpha:1},300);
-            egret.Tween.get(this.alertTF).to({alpha:1},300);
-            egret.Tween.get(this.tipsTF).to({alpha:1},300);
-
-            egret.Tween.get(this.setBtn2).to({alpha:1},300);
-            egret.Tween.get(this.fbBtn2).to({alpha:1},300);
-            egret.Tween.get(this.shopBtn2).to({alpha:1},300);
-            egret.Tween.get(this.helpBtn2).to({alpha:1},300);
-
-
-            egret.Tween.get(this.setBtn).to({y: this.h - this.setBtn.height - 20},300,egret.Ease.backOut);
-            egret.Tween.get(this.fbBtn).to({y: this.h - this.fbBtn.height - 20},300,egret.Ease.backOut);
-            egret.Tween.get(this.shopBtn).to({y: this.h - this.shopBtn.height - 20},300,egret.Ease.backOut);
-            egret.Tween.get(this.helpBtn).to({y: this.h - this.helpBtn.height - 20},300,egret.Ease.backOut);
+            egret.Tween.get(this.headTimesLabel).to({alpha:1},300);
+            egret.Tween.get(this.headNum).to({alpha:1},300);
+            egret.Tween.get(this.bodyTimesLabel).to({alpha:1},300);
+            egret.Tween.get(this.bodyNum).to({alpha:1},300);
+            egret.Tween.get(this.hitTimesLabel).to({alpha:1},300);
+            egret.Tween.get(this.hitNum).to({alpha:1},300);
+            if (GameData.getInstance().model == GameModelEnum.advanture) {
+                egret.Tween.get(this.lastStepLabel).to({alpha:1},300);
+                egret.Tween.get(this.lastStepNum).to({alpha:1},300);
+            }
         };
-//        this.htmlTF.visible = true;
-        this.startBtn.visible = true;
-        this.helpBtn.visible = true;
-        this.shopBtn.visible = true;
-        this.fbBtn.visible = true;
-        this.setBtn.visible = true;
-//        egret.Tween.get(this.htmlTF).to({y:60},600,egret.Ease.backOut).call(onComplete,this);   
-    }
-
-    public onStartBtnTouchTap(e:egret.TouchEvent):void{
-        Global.dispatchEvent(MainNotify.openGameOverPanelNotify,null,false);
-        Global.dispatchEvent(MainNotify.closeGamePanelNotify,null,false);
+        this.headTimesLabel.visible = true;
+        this.headNum.visible = true;
+        this.bodyTimesLabel.visible = true;
+        this.bodyNum.visible = true;
+        this.hitTimesLabel.visible = true;
+        this.hitNum.visible = true;
+        if (GameData.getInstance().model == GameModelEnum.advanture) {
+            this.lastStepLabel.visible = true;
+            this.lastStepNum.visible = true;
+        } else {
+            this.lastStepLabel.visible = false;
+            this.lastStepNum.visible = false;
+        }
+        egret.Tween.get(this.map).to({y:300},600,egret.Ease.backOut).call(onComplete,this);
     }
 
 }

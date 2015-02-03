@@ -53,7 +53,6 @@ class PanelManager {
     static openGamePanel():void{ 
         if (PanelManager.gamePanel == null){
 			
-           
         }
         PopUpManager.addPopUp(PanelManager.gamePanel, false, 0, 0, 3);
 	} 

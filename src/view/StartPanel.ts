@@ -40,48 +40,7 @@ class StartPanel extends BasePanel{
         this.startBtn.y = this.h / 2 - this.startBtn.height / 2 + 100;
         this.addChild(this.startBtn);
         this.startBtn.visible = false;
-        this.startBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCommanBtnTouchTap, this); 
-
-        /*
-        this.helpBtn = new EButton(this,"helpBtn",null,"相机",30,1);
-        this.helpBtn.x = 20;
-        this.helpBtn.y = this.h - this.helpBtn.height - 20;
-        //this.addChild(this.helpBtn);   
-        this.helpBtn.visible = false;
-//        this.helpBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onHelpTouchTap,this); 
-
-        this.shopBtn = new EButton(this,"shopBtn",null,"分享",30,2);
-        this.shopBtn.x = 150;
-        //this.shopBtn.y = this.h - this.shopBtn.height - 20;
-        this.addChild(this.shopBtn);   
-        this.shopBtn.visible = false;
-        this.shopBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onShopTouchTap,this); 
-
-        this.fbBtn = new EButton(this,"fbBtn",this.onFbTouchTap,"",30,3);
-        this.fbBtn.x = 270;
-        this.fbBtn.y = this.h - this.fbBtn.height - 20;
-        //this.addChild(this.fbBtn);   
-        this.fbBtn.visible = false;
-
-        
-        // okButton.label = RES.getRes("ui_text.ok");
-    
-        this.setBtn = new EButton(this,"setBtn",null,RES.getRes("ui_text.ok"),30,1);
-        this.setBtn.x = this.w - this.setBtn.width - 20;
-        this.setBtn.y = this.h - this.setBtn.height - 20;
-        //this.addChild(this.setBtn);   
-        this.setBtn.visible = false;
-        this.setBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onSetTouchTap,this); 
-
-        this.textTF = new ETextField();
-        this.textTF.width = 350;
-        //this.textTF.setText("我是高级\n<font size='60' color='0x2bff00' i='true' b='false'>ETextField</font>组件<i>请使用</i>");
-        this.textTF.x = this.w/2 -this.textTF.width/2;
-        this.textTF.y = this.h - 280;
-        this.addChild(this.textTF);
-
-        var toggleSwitch = new EToggleSwitch(this,"switchOff","switchOn","switchBar");
-        //this.addChild(toggleSwitch);*/
+        this.startBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCommanBtnTouchTap, this);
 
         this.initEffect();
 
@@ -99,10 +58,6 @@ class StartPanel extends BasePanel{
         var onComplete:Function = function(){
             egret.Tween.get(this.startBtn).to({ alpha: 1 }, 300);
             egret.Tween.get(this.advatureBtn).to({ alpha: 1 }, 300);
-            egret.Tween.get(this.setBtn).to({y: this.h - this.setBtn.height - 20},300,egret.Ease.backOut);
-            egret.Tween.get(this.fbBtn).to({y: this.h - this.fbBtn.height - 20},300,egret.Ease.backOut);
-            egret.Tween.get(this.shopBtn).to({y: this.h - this.shopBtn.height - 20},300,egret.Ease.backOut);
-            egret.Tween.get(this.helpBtn).to({y: this.h - this.helpBtn.height - 20},300,egret.Ease.backOut);
         };
         this.logoImg.visible = true;
         this.startBtn.visible = true;

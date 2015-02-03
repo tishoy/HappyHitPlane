@@ -21,7 +21,6 @@ class AchievementPanel extends BasePanel{
         var item: AchievementItem;
         for (var i = 0; i < achievementData.length; i++) {
             item = new AchievementItem();
-            this.scrollPane.addChild(item);
         }
 
          this.addChild(this.scrollPane);

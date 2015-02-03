@@ -46,8 +46,8 @@ module TipsManager {
 				effectType = this._dict[attachment.hashCode].effectType;
 			}
 			this._tips = new TipsPanel(this._dict[attachment.hashCode].descStr);
-	        if(!GameConfig.gameScene().topLayer.contains(this._tips)){
-				GameConfig.gameScene().topLayer.addChild( this._tips );
+	        if(!GameConfig.gameScene().tipLayer.contains(this._tips)){
+				GameConfig.gameScene().tipLayer.addChild( this._tips );
 	        }
 	        var point:egret.Point = attachment.parent.localToGlobal(attachment.x,attachment.y);
 	        point.x = point.x + attachment.width/2;
@@ -107,8 +107,8 @@ module TipsManager {
 		var attachment = e.currentTarget;
 		if(this._tips != null){
 	        var onComplete:Function = function(){
-		        if(GameConfig.gameScene().topLayer.contains(this._tips)){
-					GameConfig.gameScene().topLayer.removeChild( this._tips );
+		        if(GameConfig.gameScene().tipLayer.contains(this._tips)){
+					GameConfig.gameScene().tipLayer.removeChild( this._tips );
 					this._tips = null;
 		        }
 	        }; 

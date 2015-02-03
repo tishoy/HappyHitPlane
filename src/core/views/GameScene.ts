@@ -10,7 +10,7 @@ class GameScene extends egret.DisplayObjectContainer{
     // 面板层 如 游戏开始结束界面之类的
     public uiLayer:egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
     // 弹窗层 如 设置之类的
-    public topLayer:egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
+    public tipLayer:egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
     // 特效层 如 飘字之类的
     public effectLayer:egret.DisplayObjectContainer = new egret.DisplayObjectContainer();
     // 主UI层 如 底部功能栏
@@ -29,7 +29,7 @@ class GameScene extends egret.DisplayObjectContainer{
     //初始化场景类
     public init():void {
         this.addChild(this.uiLayer);
-        this.addChild(this.topLayer);
+        this.addChild(this.tipLayer);
         this.addChild(this.effectLayer);
         this.addChild(this.mainUILayer);
         this.addChild(this.maskLayer);

@@ -9,7 +9,7 @@ class AchievementTypeEnum {
     /**
      * 游戏进行中能获取的称号
      */
-    static keepintType:number = 1;
+    static keepingType:number = 1;
     /**
      * 副本专属称号
      */

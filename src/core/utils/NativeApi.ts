@@ -72,7 +72,7 @@ module NativeApi {
         filesUpload.click();
         var self = this;
         filesUpload.addEventListener("change", function () {
-          self.traverseFiles(this.files);
+          traverseFiles(this.files);
         }, false);
 	} 
 
@@ -128,7 +128,7 @@ module NativeApi {
 	//显示竖屏提示
 	export function showVerticalTips(bool:boolean = false):void{ 
 		GameConfig.gameScene().uiLayer.visible = false;
-		GameConfig.gameScene().topLayer.visible = false;
+		GameConfig.gameScene().tipLayer.visible = false;
 		GameConfig.gameScene().effectLayer.visible = false;
 		GameConfig.gameScene().mainUILayer.visible = false;
         Global.verticalTipsPanel = new VerticalTipsPanel(bool);
@@ -139,7 +139,7 @@ module NativeApi {
 	//移除竖屏提示
 	export function removeVerticalTips():void{ 
 		GameConfig.gameScene().uiLayer.visible = true;
-		GameConfig.gameScene().topLayer.visible = true;
+		GameConfig.gameScene().tipLayer.visible = true;
 		GameConfig.gameScene().effectLayer.visible = true;
 		GameConfig.gameScene().mainUILayer.visible = true;
 		if(GameConfig.gameScene().rotationTipsLayer.contains(Global.verticalTipsPanel)){

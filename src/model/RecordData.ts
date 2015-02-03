@@ -39,7 +39,7 @@ class RecordData {
     }
 
     private onContinue(e:GameEvent):void {
-        this.checkAchievement(AchievementTypeEnum.keepintType);
+        this.checkAchievement(AchievementTypeEnum.keepingType);
     }
 
     private onLost(e:GameEvent):void {
@@ -90,7 +90,7 @@ class RecordData {
                 }
                 break;
 
-            case AchievementTypeEnum.keepintType:
+            case AchievementTypeEnum.keepingType:
                 //乌鸦叫的判断
                 if (AchievementData[2] == 0) {
                     var times:number;

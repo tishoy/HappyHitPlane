@@ -28,13 +28,13 @@ module TipsUtils {
         effectTips.bold = true;
         effectTips.textAlign = egret.HorizontalAlign.CENTER;
 
-        if(!GameConfig.gameScene().topLayer.contains(effectTips)){
-            GameConfig.gameScene().topLayer.addChild( effectTips );
+        if(!GameConfig.gameScene().tipLayer.contains(effectTips)){
+            GameConfig.gameScene().tipLayer.addChild( effectTips );
         }        
 
         var onComplete2:Function = function(){
-            if(GameConfig.gameScene().topLayer.contains(effectTips)){
-                GameConfig.gameScene().topLayer.removeChild( effectTips );
+            if(GameConfig.gameScene().tipLayer.contains(effectTips)){
+                GameConfig.gameScene().tipLayer.removeChild( effectTips );
                 effectTips = null;
             }
         };
@@ -69,8 +69,8 @@ module TipsUtils {
         effectTips.bold = true;
         effectTips.textAlign = egret.HorizontalAlign.CENTER;
 
-        if(!GameConfig.gameScene().topLayer.contains(effectTips)){
-            GameConfig.gameScene().topLayer.addChild( effectTips );
+        if(!GameConfig.gameScene().tipLayer.contains(effectTips)){
+            GameConfig.gameScene().tipLayer.addChild( effectTips );
         }        
 
         if(isFromeLeft){
@@ -96,8 +96,8 @@ module TipsUtils {
         }, this, 800);  
 
         egret.setTimeout(function () {
-            if(GameConfig.gameScene().topLayer.contains(effectTips)){
-                GameConfig.gameScene().topLayer.removeChild( effectTips );
+            if(GameConfig.gameScene().tipLayer.contains(effectTips)){
+                GameConfig.gameScene().tipLayer.removeChild( effectTips );
                 effectTips = null;
             }
         }, this, 1100);     
@@ -128,13 +128,13 @@ module TipsUtils {
         effectTips.scaleX = 0;
         effectTips.scaleY = 0;
 
-        if(!GameConfig.gameScene().topLayer.contains(effectTips)){
-            GameConfig.gameScene().topLayer.addChild( effectTips );
+        if(!GameConfig.gameScene().tipLayer.contains(effectTips)){
+            GameConfig.gameScene().tipLayer.addChild( effectTips );
         }        
 
         var onComplete2:Function = function(){
-            if(GameConfig.gameScene().topLayer.contains(effectTips)){
-                GameConfig.gameScene().topLayer.removeChild( effectTips );
+            if(GameConfig.gameScene().tipLayer.contains(effectTips)){
+                GameConfig.gameScene().tipLayer.removeChild( effectTips );
                 effectTips = null;
             }
         };
@@ -169,13 +169,13 @@ module TipsUtils {
         effectTips.scaleX = 4;
         effectTips.scaleY = 4;
 
-        if(!GameConfig.gameScene().topLayer.contains(effectTips)){
-            GameConfig.gameScene().topLayer.addChild( effectTips );
+        if(!GameConfig.gameScene().tipLayer.contains(effectTips)){
+            GameConfig.gameScene().tipLayer.addChild( effectTips );
         }        
 
         var onComplete2:Function = function(){
-            if(GameConfig.gameScene().topLayer.contains(effectTips)){
-                GameConfig.gameScene().topLayer.removeChild( effectTips );
+            if(GameConfig.gameScene().tipLayer.contains(effectTips)){
+                GameConfig.gameScene().tipLayer.removeChild( effectTips );
                 effectTips = null;
             }
         };
