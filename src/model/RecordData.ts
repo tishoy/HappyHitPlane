@@ -46,14 +46,14 @@ class RecordData {
 
     }
 
-    recordStep(gridData:GridData, weapon:number = 0): void {
+    recordStep(gridData:GridData): void {
         var stepData: StepData = new StepData();
         this.currentStep++;
         stepData.step = this.currentStep;
         stepData.row = gridData.row;
         stepData.column = gridData.column;
         stepData.grid = gridData.gridValue;
-        stepData.weapon = weapon;
+        //stepData.weapon = WeaponData.getInstance();
         stepData.type = gridData.gridType;
         if (stepData.type == GridTypeEnum.body) {
             stepData.bodyType = gridData.bodyType;

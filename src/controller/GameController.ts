@@ -71,7 +71,7 @@ class GameController {
             if (this.mapData.map[lightList[j]].gridType == GridTypeEnum.head) {
                 this.gameData.headTimes++;
             }
-            grid.setStatu(true);
+            grid.statu = true;
         }
         this.startGame();
     }
@@ -93,21 +93,17 @@ class GameController {
        
     }
 
-    getGridViewType(column: number, row: number, weaponTrigger:boolean): number {
+    getGridViewType(column: number, row: number): number {
         var grid: GridData = MapData.getInstance().getMapGrid(column, row);
         if (GameData.getInstance().keeping) {
-            GameController.getInstance().logHitResult(grid.gridType, weaponTrigger);
-            if (!weaponTrigger) {
-                RecordData.getInstance().recordStep(grid, PanelManager.gamePanel.selectedWeapon);
-            } else {
-                RecordData.getInstance().recordStep(grid);
-            }
-
+            GameController.getInstance().logHitResult(grid.gridType);
+            RecordData.getInstance().recordStep(grid);
         }
         return grid.gridType;
+
     }
 
-    logHitResult(gridType: number, weaponTrigger:boolean): void {
+    logHitResult(gridType: number): void {
         switch (gridType) {
             case GridTypeEnum.head:
                 this.gameData.headTimes++;
@@ -129,7 +125,7 @@ class GameController {
                 egret.Logger.info("no this grid type");
                 return;
         }
-        if (this.gameData.keeping && !weaponTrigger) {
+        if (this.gameData.keeping) {
             this.gameData.hitTimes++;
             if (this.gameData.model == GameModelEnum.advanture) {
                 this.gameData.lastStep--;
@@ -180,35 +176,18 @@ class GameController {
     }
 
     useWeapon(column:number, row:number):void {
-        var selectedValue:number = row * 9 + column;
-        var grid: GridView;
-        var weaponData:WeaponData = WeaponData.getInstance();
-        var weapon = PanelManager.gamePanel.selectedWeapon;
-        weaponData.checkWeaponQuantity(weapon)
-        switch (weapon) {
-            case WeaponEnum.radarID:
-                grid = <GridView>PanelManager.gamePanel.getChildByName(("grid" + selectedValue).toString());
-                grid.setStatu(true, false);
-                var weaponTriggers:number[] = WeaponEnum.getTriggers(WeaponEnum.radarID, column, row);
-                for (var i = 0; i < weaponTriggers.length; i++) {
-                    grid = <GridView>PanelManager.gamePanel.getChildByName("grid" + ((weaponTriggers[i] + selectedValue).toString()));
-                    grid.setStatu(true, true);
-                }
-                weaponData.radar--;
+        switch (PanelManager.gamePanel.selectedWeapon) {
+            case WeaponEnum.radarGrid:
                 break;
 
-            case WeaponEnum.fireBoomID:
-                weaponData.fireBoom--;
+            case WeaponEnum.fireBoom:
                 break;
 
-            case WeaponEnum.angryBirdID:
-                weaponData.angryBird--;
+            case WeaponEnum.angryBird:
                 break;
 
-            case WeaponEnum.scudID:
-                weaponData.scud--;
+            case WeaponEnum.scud:
                 break;
         }
-        WeaponData.getInstance().updateWeaponQuantity();
     }
 } 
