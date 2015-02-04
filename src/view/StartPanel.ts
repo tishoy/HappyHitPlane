@@ -67,7 +67,6 @@ class StartPanel extends BasePanel{
     }
 
     onAdvatureBtnTouchTap(e: egret.TouchEvent): void {
-        console.log("111111111111111111");
         Global.dispatchEvent(MainNotify.openGamePanelNotify,null,false);
         Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
         GameController.getInstance().startCopy();

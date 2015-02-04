@@ -63,7 +63,7 @@ class GridView extends egret.Sprite{
 
     private onReset(e: GameEvent): void {
         if (e.type == GameEvent.GAME_RESET) {
-            this.statu = false;
+            this.setStatu(false);
         }
     }
 
@@ -71,7 +71,7 @@ class GridView extends egret.Sprite{
         TipsManager.removeTips(this);
         console.log(81);
         if (e.type == GameEvent.GAME_VICTORY) {
-            this.statu = true;
+            this.setStatu(true);
         } else if (e.type == GameEvent.GAME_LOST){
 
         }
@@ -80,19 +80,22 @@ class GridView extends egret.Sprite{
     private onTouch(e: egret.TouchEvent): void {
         if (!this._selected) {
             this.selected = true;
-            if (this.gamePanel.selectedGrid) {
-                this.gamePanel.selectedGrid.selected = false;
-                this.gamePanel.selectedGrid = this;
+            if (PanelManager.gamePanel.selectedGrid) {
+                PanelManager.gamePanel.selectedGrid.selected = false;
+                PanelManager.gamePanel.selectedGrid = this;
             } else {
-                this.gamePanel.selectedGrid = this;
+                PanelManager.gamePanel.selectedGrid = this;
             }
         } else {
-            if (this.gamePanel.selectedWeapon) {
+            if (PanelManager.gamePanel.selectedGrid) {
+                PanelManager.gamePanel.selectedGrid = null;
+            }
+
+            if (PanelManager.gamePanel.selectedWeapon == 1) {
                 GameController.getInstance().useWeapon(this.column, this.row);
             }
             else {
-                this.gamePanel.selectedGrid = null;
-                this.statu = true;
+                this.setStatu(true, false);
             }
         }
     }
@@ -110,8 +113,8 @@ class GridView extends egret.Sprite{
         return this._statu;
     }
 
-    set statu(value: boolean) {
-        this.type = GameController.getInstance().getGridViewType(this.column, this.row);
+    setStatu(value: boolean, weaponTrigger:boolean = false) {
+        this.type = GameController.getInstance().getGridViewType(this.column, this.row, weaponTrigger);
         this._statu = value;
         if (this._selected) {
             this._selected = false;

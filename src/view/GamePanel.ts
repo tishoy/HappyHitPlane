@@ -21,7 +21,7 @@ class GamePanel extends BasePanel{
     private radarButton:EToggleButton;
     private fireButton:EToggleButton;
     private birdButton:EToggleButton;
-    private gamecancel: EToggleButton;
+
     constructor(){
         super();
     }
@@ -39,12 +39,55 @@ class GamePanel extends BasePanel{
         this.map.x = 0;
         this.addChild(this.map);
 
-        this.gamecancel.y = this.h / 2 - this.gamecancel.height / 2 - 100;
-        this.addChild(this.gamecancel);
-        this.gamecancel.visible = true;
-        this.gamecancel.touchEnabled = true;
-        console.log("222222222222222222222222222");
-        this.gamecancel.addEventListener(egret.TouchEvent.TOUCH_TAP, this.ongamecancelTouchTap, this);
+        var grid: GridView;
+        for (var i = 0; i < 81; i++) {
+            grid = new GridView();
+            grid.column = i % 9;
+            grid.row = Math.floor(i / 9);
+            grid.x = 10 + grid.column * 50;
+            grid.y = 315 + grid.row * 50;
+            grid.name = "grid" + i;
+            this.addChildAt(grid,this.getChildIndex	(this.map) + 1);
+        }
+
+        this.mapName = new ETextField();
+        this.mapName.bold = true;
+        this.mapName.strokeColor = 0xFFFFFF;
+        this.mapName.stroke = 1;
+        this.mapName.width = 370;
+        this.mapName.x = 100;
+        this.mapName.y = 30;
+        this.mapName.visible = false
+        this.addChild(this.mapName);
+
+        this.headTimesLabel = new ETextField();
+        this.headTimesLabel.bold = true;
+        this.headTimesLabel.strokeColor = 0x000000;
+        this.headTimesLabel.stroke = 1;
+        this.headTimesLabel.width = 370;
+        this.headTimesLabel.setText("爆头次数");
+        this.headTimesLabel.x = 38;
+        this.headTimesLabel.y = 140;
+        this.headTimesLabel.visible = false;
+        this.addChild(this.headTimesLabel);
+
+        this.headNum = new egret.BitmapText();
+        this.headNum.spriteSheet = RES.getRes("font_json");
+        this.headNum.x = 178;
+        this.headNum.y = 131;
+        this.headNum.visible = false;
+        this.addChild(this.headNum);
+
+        this.bodyTimesLabel = new ETextField();
+        this.bodyTimesLabel.bold = true;
+        this.bodyTimesLabel.strokeColor = 0x000000;
+        this.bodyTimesLabel.stroke = 1;
+        this.bodyTimesLabel.width = 370;
+        this.bodyTimesLabel.setText("击中次数");
+        this.bodyTimesLabel.x = 220;
+        this.bodyTimesLabel.y = 140;
+        this.bodyTimesLabel.visible = false;
+        this.addChild(this.bodyTimesLabel);
 
         this.bodyNum = new egret.BitmapText();
         this.bodyNum.spriteSheet = RES.getRes("font_json");
@@ -88,22 +131,16 @@ class GamePanel extends BasePanel{
         this.lastStepNum.y = 181;
         this.lastStepNum.visible = false;
         this.addChild(this.lastStepNum);
-
+        this.selectedWeapon = WeaponEnum.radarID;
         //TipsManager.addTips(this.helpBtn,"我是排行榜按钮哦！",1);
         //TipsManager.addTips(this.shopBtn,"我是商店按钮哦！",2);
         //TipsManager.addTips(this.fbBtn,"我是facebook按钮哦！",3);
         //TipsManager.addTips(this.setBtn,"我是设置按钮哦！",4);
-
         //this.radarButton.setSelected(false);
         //this.fireButton.setSelected(false);
         //this.birdButton.setSelected(false);
 
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
-    }
-
-    ongamecancelTouchTap(e: egret.TouchEvent): void {
-        console.log("1111111111111111111111111111111");
-        Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
     }
 
     private onAdded(e:egret.Event){
