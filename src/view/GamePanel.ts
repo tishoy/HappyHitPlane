@@ -131,12 +131,11 @@ class GamePanel extends BasePanel{
         this.lastStepNum.y = 181;
         this.lastStepNum.visible = false;
         this.addChild(this.lastStepNum);
-
+        this.selectedWeapon = WeaponEnum.radarID;
         //TipsManager.addTips(this.helpBtn,"我是排行榜按钮哦！",1);
         //TipsManager.addTips(this.shopBtn,"我是商店按钮哦！",2);
         //TipsManager.addTips(this.fbBtn,"我是facebook按钮哦！",3);
         //TipsManager.addTips(this.setBtn,"我是设置按钮哦！",4);
-
         //this.radarButton.setSelected(false);
         //this.fireButton.setSelected(false);
         //this.birdButton.setSelected(false);
