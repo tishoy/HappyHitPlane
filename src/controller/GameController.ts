@@ -174,4 +174,20 @@ class GameController {
     startGame(): void {
         this.gameData.keeping = true;
     }
+
+    useWeapon(column:number, row:number):void {
+        switch (PanelManager.gamePanel.selectedWeapon) {
+            case WeaponEnum.radarGrid:
+                break;
+
+            case WeaponEnum.fireBoom:
+                break;
+
+            case WeaponEnum.angryBird:
+                break;
+
+            case WeaponEnum.scud:
+                break;
+        }
+    }
 } 

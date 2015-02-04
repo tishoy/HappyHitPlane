@@ -4,6 +4,7 @@
  */
 class GamePanel extends BasePanel{
     selectedGrid:GridView;
+    selectedWeapon:number;
 
     private gameData:GameData;
     private map:egret.Bitmap;

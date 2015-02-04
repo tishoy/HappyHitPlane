@@ -10,6 +10,7 @@ class GridView extends egret.Sprite{
     sheet:egret.SpriteSheet;
     row;
     column;
+    gamePanel:GamePanel;
 
     constructor() {
         super();
@@ -17,6 +18,7 @@ class GridView extends egret.Sprite{
     }
 
     init() {
+        this.gamePanel = PanelManager.gamePanel;
         this.touchEnabled = true;
         this.width = this.height = 48;
         this.sheet = RES.getRes("mapView");
@@ -78,15 +80,20 @@ class GridView extends egret.Sprite{
     private onTouch(e: egret.TouchEvent): void {
         if (!this._selected) {
             this.selected = true;
-            if (PanelManager.gamePanel.selectedGrid) {
-                PanelManager.gamePanel.selectedGrid.selected = false;
-                PanelManager.gamePanel.selectedGrid = this;
+            if (this.gamePanel.selectedGrid) {
+                this.gamePanel.selectedGrid.selected = false;
+                this.gamePanel.selectedGrid = this;
             } else {
-                PanelManager.gamePanel.selectedGrid = this;
+                this.gamePanel.selectedGrid = this;
             }
         } else {
-            PanelManager.gamePanel.selectedGrid = null;
-            this.statu = true;
+            if (this.gamePanel.selectedWeapon) {
+                GameController.getInstance().useWeapon(this.column, this.row);
+            }
+            else {
+                this.gamePanel.selectedGrid = null;
+                this.statu = true;
+            }
         }
     }
 
@@ -97,9 +104,6 @@ class GridView extends egret.Sprite{
     set selected(value: boolean) {
         this._selected = value;
         this.updateView();
-        if (this._selected) {
-           egret.Tween.get(this.view, { loop: true }).to({ apha : 0}, 1000).to({ apha : 1}, 1000);
-        } 
     }
 
     get statu(): boolean {
