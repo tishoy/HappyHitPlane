@@ -21,6 +21,7 @@ class GamePanel extends BasePanel{
     private radarButton:EToggleButton;
     private fireButton:EToggleButton;
     private birdButton:EToggleButton;
+    private gameCancel: EButton;
 
     constructor(){
         super();
@@ -89,6 +90,14 @@ class GamePanel extends BasePanel{
         this.bodyTimesLabel.visible = false;
         this.addChild(this.bodyTimesLabel);
 
+        this.gameCancel = new EButton(this,"cancelBtn");
+        this.gameCancel.x = this.w - this.gameCancel.height;
+        this.gameCancel.y = 0;
+        this.addChild(this.gameCancel);
+        this.gameCancel.visible = true;
+        this.gameCancel.touchEnabled = true;
+        this.gameCancel.addEventListener(egret.TouchEvent.TOUCH_TAP, this.ongamecancelTouchTap, this);
+
         this.bodyNum = new egret.BitmapText();
         this.bodyNum.spriteSheet = RES.getRes("font_json");
         this.bodyNum.x = 360;
@@ -132,6 +141,7 @@ class GamePanel extends BasePanel{
         this.lastStepNum.visible = false;
         this.addChild(this.lastStepNum);
         this.selectedWeapon = WeaponEnum.radarID;
+
         //TipsManager.addTips(this.helpBtn,"我是排行榜按钮哦！",1);
         //TipsManager.addTips(this.shopBtn,"我是商店按钮哦！",2);
         //TipsManager.addTips(this.fbBtn,"我是facebook按钮哦！",3);
@@ -141,6 +151,10 @@ class GamePanel extends BasePanel{
         //this.birdButton.setSelected(false);
 
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
+    }
+
+    ongamecancelTouchTap(e: egret.TouchEvent): void {
+        Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
     }
 
     private onAdded(e:egret.Event){
