@@ -46,7 +46,49 @@ class GamePanel extends BasePanel{
         console.log("222222222222222222222222222");
         this.gamecancel.addEventListener(egret.TouchEvent.TOUCH_TAP, this.ongamecancelTouchTap, this);
 
-   
+        this.bodyNum = new egret.BitmapText();
+        this.bodyNum.spriteSheet = RES.getRes("font_json");
+        this.bodyNum.x = 360;
+        this.bodyNum.y = 131;
+        this.bodyNum.visible = false;
+        this.addChild(this.bodyNum);
+
+        this.hitTimesLabel = new ETextField();
+        this.hitTimesLabel.bold = true;
+        this.hitTimesLabel.strokeColor = 0x000000;
+        this.hitTimesLabel.stroke = 1;
+        this.hitTimesLabel.width = 370;
+        this.hitTimesLabel.setText("射击次数");
+        this.hitTimesLabel.x = 185;
+        this.hitTimesLabel.y = 83;
+        this.hitTimesLabel.visible = false;
+        this.addChild(this.hitTimesLabel);
+
+        this.hitNum = new egret.BitmapText();
+        this.hitNum.spriteSheet = RES.getRes("font_json");
+        this.hitNum.x = 325;
+        this.hitNum.y = 74;
+        this.hitNum.visible = false;
+        this.addChild(this.hitNum);
+
+        this.lastStepLabel = new ETextField();
+        this.lastStepLabel.bold = true;
+        this.lastStepLabel.strokeColor = 0x000000;
+        this.lastStepLabel.stroke = 1;
+        this.lastStepLabel.width = 370;
+        this.lastStepLabel.setText("剩余次数");
+        this.lastStepLabel.x = 120;
+        this.lastStepLabel.y = 190;
+        this.lastStepLabel.visible = false;
+        this.addChild(this.lastStepLabel);
+
+        this.lastStepNum = new egret.BitmapText();
+        this.lastStepNum.spriteSheet = RES.getRes("font_json");
+        this.lastStepNum.x = 260;
+        this.lastStepNum.y = 181;
+        this.lastStepNum.visible = false;
+        this.addChild(this.lastStepNum);
+
         //TipsManager.addTips(this.helpBtn,"我是排行榜按钮哦！",1);
         //TipsManager.addTips(this.shopBtn,"我是商店按钮哦！",2);
         //TipsManager.addTips(this.fbBtn,"我是facebook按钮哦！",3);
@@ -58,9 +100,11 @@ class GamePanel extends BasePanel{
 
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
     }
+
     ongamecancelTouchTap(e: egret.TouchEvent): void {
         console.log("1111111111111111111111111111111");
-        Global.dispatchEvent(MainNotify.closeGamePanelNotify, null,false);
+        Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
+    }
 
     private onAdded(e:egret.Event){
         this.initEffect();
