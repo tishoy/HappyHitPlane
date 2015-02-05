@@ -154,7 +154,7 @@ class GamePanel extends BasePanel{
     }
 
     onGameCancelTouchTap(e: egret.TouchEvent): void {
-        Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
+        Global.confirm("", "确定退出？", this.closePanel, this.onNextCopyCancel, 1);
     }
 
     private onAdded(e:egret.Event){
