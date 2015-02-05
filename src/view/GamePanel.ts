@@ -96,7 +96,7 @@ class GamePanel extends BasePanel{
         this.addChild(this.gameCancel);
         this.gameCancel.visible = true;
         this.gameCancel.touchEnabled = true;
-        this.gameCancel.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGameCancelTouchTap, this);
+        this.gameCancel.addEventListener(egret.TouchEvent.TOUCH_TAP, this.ongamecancelTouchTap, this);
 
         this.bodyNum = new egret.BitmapText();
         this.bodyNum.spriteSheet = RES.getRes("font_json");
@@ -153,8 +153,7 @@ class GamePanel extends BasePanel{
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
     }
 
-
-    onGameCancelTouchTap(e: egret.TouchEvent): void {
+    ongamecancelTouchTap(e: egret.TouchEvent): void {
         Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
     }
 
@@ -224,8 +223,9 @@ class GamePanel extends BasePanel{
         } else {
             var lineArr: Array<any> = result[15];
         }
-        var text = lineArr[1]["text"];
-        Global.alert("提示", "您使用了" + step + "步打出了所有飞机！" + "\r" + text, this.goonCommonGame, 3);
+        var text: string = "";
+        text = lineArr[1]["text"];
+        Global.alert("提示", "您使用了" + step + "步打出了所有飞机！" + text, this.goonCommonGame, 3);
     }
 
     private goonCommonGame(): void {
@@ -274,3 +274,4 @@ class GamePanel extends BasePanel{
     }
 
 }
+
