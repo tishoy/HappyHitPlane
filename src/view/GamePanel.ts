@@ -153,6 +153,7 @@ class GamePanel extends BasePanel{
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
     }
 
+
     onGameCancelTouchTap(e: egret.TouchEvent): void {
         Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
     }
