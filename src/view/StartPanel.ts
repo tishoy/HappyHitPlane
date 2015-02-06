@@ -32,8 +32,9 @@ class StartPanel extends BasePanel{
         this.advatureBtn.x = this.w / 2 - this.advatureBtn.width/2;
         this.advatureBtn.y = this.h / 2 - this.advatureBtn.height/2 - 100;        
         this.addChild(this.advatureBtn);
+        //this.advatureBtn.cooldownTime = 500;
         this.advatureBtn.visible = false;
-        this.advatureBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAdvatureBtnTouchTap, this); 
+        this.advatureBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onAdvatureBtnTouchTap, this);
 
         this.startBtn = new EButton(this, "startBtn");
         this.startBtn.x = this.w / 2 - this.startBtn.width / 2;
@@ -67,9 +68,9 @@ class StartPanel extends BasePanel{
     }
 
     onAdvatureBtnTouchTap(e: egret.TouchEvent): void {
-        Global.dispatchEvent(MainNotify.openGamePanelNotify,null,false);
+        Global.dispatchEvent(MainNotify.openChooseCopyPanelNotify, null, false);
         Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
-        GameController.getInstance().startCopy();
+        //GameController.getInstance().startCopy();
     }
 
     onCommanBtnTouchTap(e: egret.TouchEvent): void{

@@ -1,12 +1,13 @@
-  /**
-    * 面板管理类
-    * by dily
-    * (c) copyright false,0,0,2014 - 2035
-    * All Rights Reserved. 
-    * 面板的管理类
-    */
+/**
+ * 面板管理类
+ * by dily
+ * (c) copyright false,0,0,2014 - 2035
+ * All Rights Reserved.
+ * 面板的管理类
+ */
 class PanelManager {
     static startPanel:StartPanel;
+    static chooseCopyPanel:ChooseCopyPanel;
     static gamePanel:GamePanel;
     static gameOverPanel:GameOverPanel;
     static jsSdkPanel: JsSdkPanel;
@@ -23,6 +24,9 @@ class PanelManager {
 	    Global.addEventListener(MainNotify.openStartPanelNotify, PanelManager.openStartPanel, this);
 	    Global.addEventListener(MainNotify.closeStartPanelNotify, PanelManager.closeStartPanel, this);
 
+        Global.addEventListener(MainNotify.openChooseCopyPanelNotify, PanelManager.openChooseCopyPanel, this);
+        Global.addEventListener(MainNotify.closeChooseCopyPanelNotify, PanelManager.closeChooseCopyPanel,this);
+
 	    Global.addEventListener(MainNotify.openGamePanelNotify, PanelManager.openGamePanel, this);
 	    Global.addEventListener(MainNotify.closeGamePanelNotify, PanelManager.closeGamePanel, this);
 
@@ -35,21 +39,36 @@ class PanelManager {
 	} 
 
 	// 打开开始界面
-	static openStartPanel():void{ 
-        if (PanelManager.startPanel == null){
-            PanelManager.startPanel = new StartPanel();
-            PopUpManager.addPopUp(PanelManager.startPanel,false,0,0,0);
-		}
-	} 
-	// 关闭开始界面
-    static closeStartPanel():void{ 
-        if (PanelManager.startPanel != null){
-            PopUpManager.removePopUp(PanelManager.startPanel,3);
-            PanelManager.startPanel = null;
-		}
-	} 
+      static openStartPanel():void{
+          if (PanelManager.startPanel == null){
+              PanelManager.startPanel = new StartPanel();
+              PopUpManager.addPopUp(PanelManager.startPanel,false,0,0,0);
+          }
+      }
+      // 关闭开始界面
+      static closeStartPanel():void{
+          if (PanelManager.startPanel != null){
+              PopUpManager.removePopUp(PanelManager.startPanel,3);
+              PanelManager.startPanel = null;
+          }
+      }
 
-	// 打开游戏界面
+      // 打开选关界面
+      static openChooseCopyPanel():void{
+          if (PanelManager.chooseCopyPanel == null){
+              PanelManager.chooseCopyPanel = new ChooseCopyPanel();
+              PopUpManager.addPopUp(PanelManager.chooseCopyPanel,false,0,0,0);
+          }
+      }
+      // 关闭选关界面
+      static closeChooseCopyPanel():void{
+          if (PanelManager.chooseCopyPanel != null){
+              PopUpManager.removePopUp(PanelManager.chooseCopyPanel,3);
+              PanelManager.chooseCopyPanel = null;
+          }
+      }
+
+      // 打开游戏界面
     static openGamePanel():void{ 
         if (PanelManager.gamePanel == null){
 			

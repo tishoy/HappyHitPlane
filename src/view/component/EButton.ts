@@ -16,6 +16,10 @@ class EButton extends egret.DisplayObjectContainer {
     private isPlayCartoon: Boolean = false;
     private cartoonType: number = 1;
     private param = { context: null, data: null };//回调参数
+
+    //新增功能
+    private cdEffect:egret.CooldownEffect;
+    _cooldownTime:number = 0;
     /**
     * imgName       图片
     * backFun       点击方法 如果需要在backFun中使用this的，小心使用这个
@@ -81,6 +85,56 @@ class EButton extends egret.DisplayObjectContainer {
                 this.backFun.apply(this.param.context, [this.param.data]);
             }
         }, this, 300);
+    }
+
+
+    private onClick(e:egret.TouchEvent):void{
+        this.cdEffect.start(this._cooldownTime);
+        this.touchEnabled = false;
+    }
+
+    private initCooldownEffect():void{
+        if (this.cdEffect == null){
+            this.cdEffect = new egret.CooldownEffect(this.width, this.height);
+            this.addChild(this.cdEffect);
+            this.cdEffect.addEventListener(egret.CooldownEffect.COOLDOWN_END, this.onCDEnd, this);
+        }
+    }
+
+    private onCDEnd(e:Event):void{
+        this.touchEnabled = true;
+    }
+
+
+    public get cooldownTime():number{
+        return this._cooldownTime;
+    }
+
+    public set cooldownTime(value:number) {
+        if (this._cooldownTime == value){
+            return;
+        }
+        this._cooldownTime = value;
+        if (this._cooldownTime > 0){
+            this.initCooldownEffect();
+            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+        }
+        else{
+            if (this.cdEffect){
+                if (this.cdEffect.parent){
+                    this.removeChild(this.cdEffect);
+                }
+                this.cdEffect.removeEventListener(egret.CooldownEffect.COOLDOWN_END, this.onCDEnd, this);
+                this.cdEffect = null;
+            }
+            this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+        }
+    }
+
+    public startCooldown(time:number = 0):void{
+        this.initCooldownEffect();
+        this.cdEffect.start(time);
+        this.touchEnabled = false;
     }
 
     //设置绑定数据

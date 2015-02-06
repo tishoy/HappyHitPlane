@@ -1,4 +1,4 @@
-///<reference path="../core/utils/NativeApi.ts"/>
+///<reference path="../utils/NativeApi.ts"/>
 /**
  * Created by tishoy on 15/2/2.
  */
