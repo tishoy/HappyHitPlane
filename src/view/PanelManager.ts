@@ -9,6 +9,7 @@ class PanelManager {
     static startPanel:StartPanel;
     static chooseCopyPanel:ChooseCopyPanel;
     static gamePanel:GamePanel;
+    static shopPanel:ShopPanel;
     static gameOverPanel:GameOverPanel;
     static jsSdkPanel: JsSdkPanel;
 
@@ -26,6 +27,9 @@ class PanelManager {
 
         Global.addEventListener(MainNotify.openChooseCopyPanelNotify, PanelManager.openChooseCopyPanel, this);
         Global.addEventListener(MainNotify.closeChooseCopyPanelNotify, PanelManager.closeChooseCopyPanel,this);
+
+        Global.addEventListener(MainNotify.openShopPanelNotify, PanelManager.openShopPanel, this);
+        Global.addEventListener(MainNotify.closeShopPanelNotify, PanelManager.closeShopPanel, this);
 
 	    Global.addEventListener(MainNotify.openGamePanelNotify, PanelManager.openGamePanel, this);
 	    Global.addEventListener(MainNotify.closeGamePanelNotify, PanelManager.closeGamePanel, this);
@@ -81,7 +85,23 @@ class PanelManager {
             PopUpManager.removePopUp(PanelManager.gamePanel,3);
 //			this.gamePanel = null;
 		}
-	} 
+	}
+
+    static openShopPanel():void{
+        if (PanelManager.shopPanel == null) {
+            PanelManager.shopPanel = new ShopPanel();
+            console.log("实例化");
+            PopUpManager.addPopUp(PanelManager.shopPanel, false, 0, 0, 3);
+        }
+    }
+
+    static closeShopPanel():void{
+        if (PanelManager.shopPanel != null){
+            PopUpManager.removePopUp(PanelManager.shopPanel,3);
+            PanelManager.shopPanel = null;
+        }
+    }
+
 	// 打开结束界面
     static  openGameOverPanel():void{ 
          if (PanelManager.gameOverPanel == null){

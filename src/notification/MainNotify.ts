@@ -30,6 +30,10 @@ module MainNotify {
 	export var openGamePanelNotify:string = "openGamePanelNotify";
 	//关闭游戏界面
 	export var closeGamePanelNotify:string = "closeGamePanelNotify";
+    //打开商店界面
+    export var openShopPanelNotify:string = "openShopPanelNotify";
+    //关闭商店界面
+    export var closeShopPanelNotify:string = "closeShopPanelNotify";
     //打开选关界面
     export var openChooseCopyPanelNotify:string = "openChooseCopyPanelNotify";
     //关闭选关界面

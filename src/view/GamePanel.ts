@@ -22,6 +22,7 @@ class GamePanel extends BasePanel{
     private fireButton:EToggleButton;
     private birdButton:EToggleButton;
     private gameCancel: EButton;
+    private shopBtn:EButton;
 
     constructor(){
         super();
@@ -91,12 +92,20 @@ class GamePanel extends BasePanel{
         this.addChild(this.bodyTimesLabel);
 
         this.gameCancel = new EButton(this,"cancelBtn");
-        this.gameCancel.x = this.w - this.gameCancel.height;
+        this.gameCancel.x = this.w - this.gameCancel.width;
         this.gameCancel.y = 0;
         this.addChild(this.gameCancel);
         this.gameCancel.visible = true;
         this.gameCancel.touchEnabled = true;
         this.gameCancel.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onGameCancelTouchTap, this);
+
+        this.shopBtn = new EButton(this,"shopBtn");
+        this.shopBtn.x = this.w - this.gameCancel.width - this.shopBtn.width;
+        this.shopBtn.y = 0;
+        this.addChild(this.shopBtn);
+        this.shopBtn.visible = true;
+        this.shopBtn.touchEnabled = true;
+        this.shopBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShopBtnTouchTap, this);
 
         this.bodyNum = new egret.BitmapText();
         this.bodyNum.spriteSheet = RES.getRes("font_json");
@@ -151,10 +160,6 @@ class GamePanel extends BasePanel{
         //this.birdButton.setSelected(false);
 
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAdded, this);
-    }
-
-    onGameCancelTouchTap(e: egret.TouchEvent): void {
-        Global.confirm("", "确定退出？", this.closePanel, this.onNextCopyCancel, 1);
     }
 
     private onAdded(e:egret.Event){
@@ -233,6 +238,15 @@ class GamePanel extends BasePanel{
 
     private onThisCopyConfirm(): void {
         GameController.getInstance().startCopy();
+    }
+
+    onGameCancelTouchTap(e: egret.TouchEvent): void {
+        Global.confirm("", "确定退出？", this.closePanel, this.onNextCopyCancel, 1);
+    }
+
+    onShopBtnTouchTap(e:egret.TouchEvent):void{
+        Global.dispatchEvent(MainNotify.openShopPanelNotify, null, false);
+        Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
     }
 
     private initEffect():void{
