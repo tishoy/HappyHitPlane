@@ -8,13 +8,8 @@ class AchievementPanel extends BasePanel{
       
     constructor() {
         super();
-//         this.scrollPane = new egret.ScrollView(scrollContainter);
-         this.initPanel();
      }
 
-    /**
-     * 对滑动面板测试，效果不佳
-     */
     initPanel(): void {
         this.scrollPane = new egret.ScrollView();
         var achievementData: string[] = RES.getRes("description");

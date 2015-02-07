@@ -229,7 +229,7 @@ class GamePanel extends BasePanel{
             var lineArr: Array<any> = result[15];
         }
         var text = lineArr[1]["text"];
-        Global.alert("提示", "您使用了" + step + "步打出了所有飞机！" + "\r" + text, this.goonCommonGame, 3);
+        Global.alert("提示", "您使用了" + step + "步打出了所有飞机！" + "\n" + text, this.goonCommonGame, 3);
     }
 
     private goonCommonGame(): void {

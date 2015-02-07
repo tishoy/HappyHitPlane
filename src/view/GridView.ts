@@ -69,7 +69,6 @@ class GridView extends egret.Sprite{
 
     private onEnd(e: GameEvent): void {
         TipsManager.removeTips(this);
-        console.log(81);
         if (e.type == GameEvent.GAME_VICTORY) {
             this.setStatu(true);
         } else if (e.type == GameEvent.GAME_LOST){
@@ -114,6 +113,9 @@ class GridView extends egret.Sprite{
     }
 
     setStatu(value: boolean, weaponTrigger:boolean = false) {
+        if (value == true && this._statu == value) {
+            return;
+        }
         this.type = GameController.getInstance().getGridViewType(this.column, this.row, weaponTrigger);
         this._statu = value;
         if (this._selected) {

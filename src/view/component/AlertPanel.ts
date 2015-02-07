@@ -61,10 +61,12 @@ class AlertPanel extends BasePanel{
             this.addChild(this.descTF);
             this.descTF.textColor = 0x000000;
             this.descTF.size = 20;
-            this.descTF.width = this.bg.width;
-            this.descTF.height = 24;
+            this.descTF.width = this.bg.width - 30;
+            this.descTF.x = 15;
+            this.descTF.height = 60;
             this.descTF.y = this.bg.height/2 - this.descTF.height/2 + 10;
             this.descTF.textAlign = "center";
+            this.descTF.multiline = true;
             this.descTF.text = this.descStr;            
         }
 
