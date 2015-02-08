@@ -7,12 +7,16 @@ class ShopPanel extends BasePanel{
     private itemList: any[];
     private swipePane: egret.HSwipePane;
     private closeBtn: EButton;
+    private buyWeaponBtn:EButton;
+    private selectWeapon:number;
 
     constructor() {
         super();
     }
 
     initPanel(): void {
+        this.selectWeapon = WeaponEnum.radarID;
+
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);
@@ -31,8 +35,14 @@ class ShopPanel extends BasePanel{
         this.swipePane.y = 300;
         this.swipePane.space = 380;
         this.swipePane.touchEnabled = true;
-        this.swipePane.pageSize = new egret.Point(380, 600);
+        this.swipePane.pageSize = new egret.Point(380, 200);
         this.addChild(this.swipePane);
+
+        this.buyWeaponBtn = new EButton(this, "startBtn");
+        this.buyWeaponBtn.width = (this.w - this.buyWeaponBtn.width) << 1;
+        this.buyWeaponBtn.y = 600;
+        this.addChild(this.buyWeaponBtn);
+        this.buyWeaponBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.buyWeapon, this);
 
         this.updateView();
         //this.addEventListener(egret.Event.ADDED_TO_STAGE, this.updateView, this);
@@ -50,7 +60,11 @@ class ShopPanel extends BasePanel{
     }
 
     onGameCancelTouchTap(e: egret.TouchEvent): void {
-        Global.confirm("", "确定退出？", this.closePanel, this.backToGame, 1);
+        Global.confirm("", "返回继续游戏？", this.closePanel, this.backToGame, 1);
+    }
+
+    private buyWeapon():void {
+        GameController.getInstance().buyWeapon(this.selectWeapon);
     }
 
     private backToGame(): void {

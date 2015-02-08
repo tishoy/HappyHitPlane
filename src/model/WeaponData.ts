@@ -26,7 +26,7 @@ class WeaponData extends egret.EventDispatcher {
     }
 
     initialize(): void {
-        this.radar = 9999;
+        this.radar = 0;
         this.fireBoom = 0;
         this.angryBird = 0;
         this.scud = 0;
@@ -36,36 +36,44 @@ class WeaponData extends egret.EventDispatcher {
 
     }
 
-    checkWeaponQuantity(weapon:number):void{
+    checkWeaponQuantity(weapon:number):boolean{
         switch (weapon) {
             case WeaponEnum.radarID:
                 if(this.radar == 0){
                     //打开商店面板 派发事件到游戏面板
-                    Global.confirm("军火不足", "您没有足够的雷达，是否前往商店购买", null);
+                    Global.confirm("军火不足", "您没有足够的雷达，是否前往商店购买", null, this.openShopPanel);
+                    return false;
                 }
-                break;
+                return true;
 
             case WeaponEnum.fireBoomID:
                 if(this.fireBoom == 0){
                     //打开商店面板
                     Global.confirm("军火不足", "您没有足够的雷达，是否前往商店购买", null);
+                    return false;
                 }
-                break;
+                return true;
 
             case WeaponEnum.angryBirdID:
                 if(this.angryBird == 0){
                     //打开商店面板
                     Global.confirm("军火不足", "您没有足够的雷达，是否前往商店购买", null);
+                    return false;
                 }
-                break;
+                return true;
 
             case WeaponEnum.scudID:
                 if(this.scud == 0){
                     //打开商店面板
                     Global.confirm("军火不足", "您没有足够的雷达，是否前往商店购买", null);
+                    return false;
                 }
-                break;
+                return true;
         }
     }
 
+    openShopPanel():void {
+        Global.dispatchEvent(MainNotify.openShopPanelNotify, null, false);
+        Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
+    }
 }

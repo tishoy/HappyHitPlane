@@ -8,6 +8,7 @@ class GameController {
     private mapData: MapData;
     private gameData:GameData;
     private copyData:CopyData;
+    private weaponData:WeaponData
     private random: boolean = true;
 
     constructor() {
@@ -28,6 +29,7 @@ class GameController {
         this.mapData = MapData.getInstance();
         this.gameData = GameData.getInstance();
         this.copyData = CopyData.getInstance();
+        this.weaponData = WeaponData.getInstance();
     }
 
     initMap():void {
@@ -182,9 +184,10 @@ class GameController {
     useWeapon(column:number, row:number):void {
         var selectedValue:number = row * 9 + column;
         var grid: GridView;
-        var weaponData:WeaponData = WeaponData.getInstance();
         var weapon = PanelManager.gamePanel.selectedWeapon;
-        weaponData.checkWeaponQuantity(weapon)
+        if (!this.weaponData.checkWeaponQuantity(weapon)) {
+            return;
+        }
         switch (weapon) {
             case WeaponEnum.radarID:
                 grid = <GridView>PanelManager.gamePanel.getChildByName(("grid" + selectedValue).toString());
@@ -194,21 +197,25 @@ class GameController {
                     grid = <GridView>PanelManager.gamePanel.getChildByName("grid" + ((weaponTriggers[i] + selectedValue).toString()));
                     grid.setStatu(true, true);
                 }
-                weaponData.radar--;
+                this.weaponData.radar--;
                 break;
 
             case WeaponEnum.fireBoomID:
-                weaponData.fireBoom--;
+                this.weaponData.fireBoom--;
                 break;
 
             case WeaponEnum.angryBirdID:
-                weaponData.angryBird--;
+                this.weaponData.angryBird--;
                 break;
 
             case WeaponEnum.scudID:
-                weaponData.scud--;
+                this.weaponData.scud--;
                 break;
         }
         WeaponData.getInstance().updateWeaponQuantity();
+    }
+
+    buyWeapon(weapon:number):void {
+        this.weaponData.radar++;
     }
 } 

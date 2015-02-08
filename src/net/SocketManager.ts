@@ -29,6 +29,10 @@ module SocketManager {
         Global.waitPanel = null;
     }
 
+    export function onSocketClosed():void {
+        //做登陆服务器时候可以使用
+    }
+
     //消息返回后，会广播出去
     //Global.addEventListener("你发送的cmd名称",监听方法,this)
     export function onReceiveMessage(): void {

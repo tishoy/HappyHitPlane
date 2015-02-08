@@ -19,6 +19,7 @@ class GamePanel extends BasePanel{
     private lastStepLabel: ETextField;
     private lastStepNum: egret.BitmapText;
     private radarButton:EToggleButton;
+    private radarSwitch:EToggleSwitch;
     private fireButton:EToggleButton;
     private birdButton:EToggleButton;
     private gameCancel: EButton;
@@ -107,6 +108,20 @@ class GamePanel extends BasePanel{
         this.shopBtn.touchEnabled = true;
         this.shopBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShopBtnTouchTap, this);
 
+        //武器按钮们
+        //this.radarButton = new EToggleButton(this, "", "");
+        this.radarSwitch = new EToggleSwitch(this, "switchOff", "switchOn", "switchBar", this.onSwitch);
+        this.radarSwitch.x = 360;
+        this.radarSwitch.y = 240;
+        this.addChild(this.radarSwitch);
+
+        var textRadar:ETextField = new ETextField();
+        textRadar.text = "使用道具";
+        textRadar.x = 240;
+        textRadar.y = 240;
+        this.addChild(textRadar);
+
+        //记分板积分
         this.bodyNum = new egret.BitmapText();
         this.bodyNum.spriteSheet = RES.getRes("font_json");
         this.bodyNum.x = 360;
@@ -149,7 +164,6 @@ class GamePanel extends BasePanel{
         this.lastStepNum.y = 181;
         this.lastStepNum.visible = false;
         this.addChild(this.lastStepNum);
-        this.selectedWeapon = WeaponEnum.radarID;
 
         //TipsManager.addTips(this.helpBtn,"我是排行榜按钮哦！",1);
         //TipsManager.addTips(this.shopBtn,"我是商店按钮哦！",2);
@@ -247,6 +261,14 @@ class GamePanel extends BasePanel{
     onShopBtnTouchTap(e:egret.TouchEvent):void{
         Global.dispatchEvent(MainNotify.openShopPanelNotify, null, false);
         Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
+    }
+
+    onSwitch():void{
+        if (this.radarSwitch.getSelected()) {
+            this.selectedWeapon = WeaponEnum.radarID;
+        } else{
+            this.selectedWeapon = WeaponEnum.nothingUsed;
+        }
     }
 
     private initEffect():void{
