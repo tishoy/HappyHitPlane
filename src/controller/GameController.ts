@@ -186,6 +186,8 @@ class GameController {
         var grid: GridView;
         var weapon = PanelManager.gamePanel.selectedWeapon;
         if (!this.weaponData.checkWeaponQuantity(weapon)) {
+            PanelManager.gamePanel.selectedGrid.
+
             return;
         }
         switch (weapon) {

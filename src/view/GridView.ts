@@ -113,6 +113,7 @@ class GridView extends egret.Sprite{
     }
 
     setStatu(value: boolean, weaponTrigger:boolean = false) {
+        //已经亮起的
         if (value == true && this._statu == value) {
             return;
         }

@@ -31,11 +31,11 @@ class ShopPanel extends BasePanel{
 
         this.itemList = [];
         this.swipePane = new egret.HSwipePane();
-        this.swipePane.x = 50;
+        this.swipePane.x = 0;
         this.swipePane.y = 300;
-        this.swipePane.space = 380;
+        this.swipePane.space = 480;
         this.swipePane.touchEnabled = true;
-        this.swipePane.pageSize = new egret.Point(380, 200);
+        this.swipePane.pageSize = new egret.Point(480, 200);
         this.addChild(this.swipePane);
 
         this.buyWeaponBtn = new EButton(this, "startBtn");
@@ -50,10 +50,15 @@ class ShopPanel extends BasePanel{
 
     updateView(): void {
         var logo:egret.Bitmap;
+        var textRadar:ETextField;
         for (var i = 0; i < 10; i++) {
-            logo = new egret.Bitmap();
-            logo.texture = this.assets.getTexture("logoImg");
-            this.itemList[i] = logo;
+            //logo = new egret.Bitmap();
+            //logo.texture = this.assets.getTexture("logoImg");
+            //this.itemList[i] = logo;
+            textRadar = new ETextField();
+            textRadar.scaleX = textRadar.scaleY = 4;
+            textRadar.text = "道具ID" + i;
+            this.itemList[i] = textRadar;
         }
         this.swipePane.itemList = this.itemList;
         console.log("结束了");
