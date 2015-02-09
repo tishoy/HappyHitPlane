@@ -35,6 +35,7 @@ class ShopPanel extends BasePanel{
         this.swipePane.y = 300;
         this.swipePane.space = 480;
         this.swipePane.touchEnabled = true;
+        this.swipePane.lockToPage = true;
         this.swipePane.pageSize = new egret.Point(480, 200);
         this.addChild(this.swipePane);
 
@@ -49,16 +50,13 @@ class ShopPanel extends BasePanel{
     }
 
     updateView(): void {
-        var logo:egret.Bitmap;
-        var textRadar:ETextField;
-        for (var i = 0; i < 10; i++) {
-            //logo = new egret.Bitmap();
-            //logo.texture = this.assets.getTexture("logoImg");
-            //this.itemList[i] = logo;
-            textRadar = new ETextField();
-            textRadar.scaleX = textRadar.scaleY = 4;
-            textRadar.text = "道具ID" + i;
-            this.itemList[i] = textRadar;
+        var shopItem:ShopItem;
+        var shopList:any[] = RES.getRes("shop");
+        for (var i = 0; i < shopList.length; i++) {
+            shopItem = new ShopItem();
+            shopItem.id = shopList[i].id
+            shopItem.name = shopList[i].name;
+            this.itemList.push(shopItem);
         }
         this.swipePane.itemList = this.itemList;
         console.log("结束了");

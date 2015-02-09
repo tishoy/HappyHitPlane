@@ -3,7 +3,7 @@
  * 主界面每个格子
  */
 class GridView extends egret.Sprite{
-    private _selected:boolean;    //
+    private _selected:boolean;
     private _statu: boolean;  //0为关闭，1为打开
     private type:number;
     view: egret.Bitmap;
@@ -89,7 +89,6 @@ class GridView extends egret.Sprite{
             if (PanelManager.gamePanel.selectedGrid) {
                 PanelManager.gamePanel.selectedGrid = null;
             }
-
             if (PanelManager.gamePanel.selectedWeapon == 1) {
                 GameController.getInstance().useWeapon(this.column, this.row);
             }
@@ -113,7 +112,7 @@ class GridView extends egret.Sprite{
     }
 
     setStatu(value: boolean, weaponTrigger:boolean = false) {
-        //已经亮起的
+        //已经亮起的 免受道具波及
         if (value == true && this._statu == value) {
             return;
         }
