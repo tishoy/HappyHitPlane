@@ -83,32 +83,32 @@ module Global {
     * backFun        	分享结束的回调
     */
 	export function shareToWeiXin(title,desc,link,imgUrl,type:number = 0,backFun:Function = null):void {//微信分享
-		GlobalData.title = title;
-		GlobalData.desc = desc;
-		GlobalData.link = link;
-		GlobalData.imgUrl = imgUrl;
-        WeixinApi.ready(function(api:WeixinApi){
-            var info:WeixinShareInfo = new WeixinShareInfo();
-            info.title = title;//分享的标题 长度不能超过512字节
-            info.desc = desc;//分享的内容 长度不能超过1K
-            info.link = link;//分享的连接
-            info.imgUrl = imgUrl; //分享图片的地址 图片大小不能超过32k
+		// GlobalData.title = title;
+		// GlobalData.desc = desc;
+		// GlobalData.link = link;
+		// GlobalData.imgUrl = imgUrl;
+        // WeixinApi.ready(function(api:WeixinApi){
+        //     var info:WeixinShareInfo = new WeixinShareInfo();
+        //     info.title = title;//分享的标题 长度不能超过512字节
+        //     info.desc = desc;//分享的内容 长度不能超过1K
+        //     info.link = link;//分享的连接
+        //     info.imgUrl = imgUrl; //分享图片的地址 图片大小不能超过32k
 
-            var backInfo:WeixinShareCallbackInfo = new WeixinShareCallbackInfo();
-            if(backFun != null){
-            	backInfo.confirm = backFun;
-            }
+        //     var backInfo:WeixinShareCallbackInfo = new WeixinShareCallbackInfo();
+        //     if(backFun != null){
+        //     	backInfo.confirm = backFun;
+        //     }
 
-            if(type == 0){
-	            api.shareToFriend(info,backInfo);
-	            api.shareToTimeline(info,backInfo);            	
-            }else if(type == 1){
-	            api.shareToFriend(info,backInfo);
-            }else if(type == 2){
-            	api.shareToTimeline(info,backInfo);
-            }
+        //     if(type == 0){
+	    //         api.shareToFriend(info,backInfo);
+	    //         api.shareToTimeline(info,backInfo);            	
+        //     }else if(type == 1){
+	    //         api.shareToFriend(info,backInfo);
+        //     }else if(type == 2){
+        //     	api.shareToTimeline(info,backInfo);
+        //     }
 
-        })
+        // })
     } 
 
 	//手机旋转适配
@@ -117,15 +117,15 @@ module Global {
 	//具体旋转数值自己修改
 	//貌似不完善
 	export function rotationResize(isRotation:boolean = false):void{ 
-		if(isRotation){
-			egret.StageDelegate.getInstance().setDesignSize(800, 480);
-			window["rootContainer"].rotation = 90;
-			window["rootContainer"].x = egret.MainContext.instance.stage.stageWidth;
-		}else{
-			egret.StageDelegate.getInstance().setDesignSize(480, 800);
-			window["rootContainer"].rotation = 0;
-			window["rootContainer"].x = 0;
-		}
+		// if(isRotation){
+		// 	egret.StageDelegate.getInstance().setDesignSize(800, 480);
+		// 	window["rootContainer"].rotation = 90;
+		// 	window["rootContainer"].x = egret.MainContext.instance.stage.stageWidth;
+		// }else{
+		// 	egret.StageDelegate.getInstance().setDesignSize(480, 800);
+		// 	window["rootContainer"].rotation = 0;
+		// 	window["rootContainer"].x = 0;
+		// }
 	} 
 
     var _alert:AlertPanel;

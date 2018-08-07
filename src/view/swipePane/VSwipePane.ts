@@ -160,14 +160,18 @@ module egret {
 			this.scrollRect = this.dragRect;
 		}
 		
+		public get maxPosition():number{
+			return this.maxDragPosition;
+		}
+
 		public get fullHeight():number{
 			return this._fullHeight;
 		}
 		
-		public set scrollRect(value:Rectangle) {
-		    super._setScrollRect(value);
-			this.dispatchEvent(new ScrollEvent(ScrollEvent.SCROLL, this.dragRect.y, 0, this.maxDragPosition));
-		}
+		// public set scrollRect(value:Rectangle) {
+		//     super._setScrollRect(value);
+		// 	this.dispatchEvent(new ScrollEvent(ScrollEvent.SCROLL, this.dragRect.y, 0, this.maxDragPosition));
+		// }
 		
 		public set pageIndex(value:number){
 			if (value < 0){

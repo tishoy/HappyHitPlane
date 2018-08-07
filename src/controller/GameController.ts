@@ -128,7 +128,7 @@ class GameController {
                 break;
 
             default:
-                egret.Logger.info("no this grid type");
+                egret.log("no this grid type");
                 return;
         }
         if (this.gameData.keeping && !weaponTrigger) {

@@ -47,8 +47,8 @@ class WaitPanel extends egret.Sprite {
         this.touchEnabled = true;
 
         this.waitImg = new egret.Bitmap;
-        this.waitImg.anchorX = 0.5;
-        this.waitImg.anchorY = 0.5;
+        this.waitImg.anchorOffsetX = 0.5;
+        this.waitImg.anchorOffsetY = 0.5;
         this.waitImg.texture = this.mySheet.getTexture(this.cartoonType);
         this.waitImg.x = this.w / 2;
         this.waitImg.y = this.h / 2;

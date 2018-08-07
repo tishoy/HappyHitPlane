@@ -108,19 +108,19 @@ class GameOverPanel extends BasePanel{
     }
 
     private alert1():void{
-        Global.confirm("提示","我是一个confirm栗子，哈哈",null,null,1);
+        Global.confirm("提示","帮助",null,null,1);
     }
 
     private alert2():void{
-        Global.confirm("提示","我是一个confirm栗子，哈哈",null,null,2);
+        Global.confirm("提示","商店",null,null,2);
     }
 
     private alert3():void{
-        Global.confirm("提示","我是一个confirm栗子，哈哈",null,null,3);
+        Global.confirm("提示","facebook",null,null,3);
     }
 
     private alert4():void{
-        Global.confirm("提示","我是一个confirm栗子，哈哈",null,null,4);
+        Global.confirm("提示","设置",null,null,4);
     }
 
     private tipsEffect1():void{

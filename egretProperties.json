@@ -1,15 +1,28 @@
 {
-	"document_class": "GameApp",
-	"native": {
-		"path_ignore": []
-	},
-	"modules": [
-		{
-			"name": "core"
-		},
-		{
-			"name": "socket"
-		}
-	],
-	"egret_version": "1.5.3"
+  "engineVersion": "5.2.5",
+  "compilerVersion": "5.2.5",
+  "template": {},
+  "target": {
+    "current": "web"
+  },
+  "modules": [
+    {
+      "name": "egret"
+    },
+    {
+      "name": "game"
+    },
+    {
+      "name": "tween"
+    },
+    {
+      "name": "assetsmanager"
+    },
+    {
+      "name": "promise"
+    },
+    {
+       "name": "socket"
+    }
+  ]
 }

@@ -105,15 +105,15 @@ class MapData {
                     var directed: number = badDirectionList[testList[testGrid]];
                     if (this.map[headed].gridType == GridTypeEnum.head &&
                         this.map[badList[headed] + DirectionTypeEnum.directionList[directed]].gridType == GridTypeEnum.body) {
-                        egret.Logger.info("twice bad");
+                        egret.log("twice bad");
                         return false;
                     } else {
-                        egret.Logger.info("first time bad");
+                        egret.log("first time bad");
                         return true;
                     }
                 }
             } else {
-                egret.Logger.info("second time bad");
+                egret.log("second time bad");
                 return true;
             }
         }
@@ -142,15 +142,15 @@ class MapData {
 //                        var directed: number = badDirectionList[testList[testGrid]];
 //                        if (this.map[headed] == GridTypeEnum.head && 
 //                            this.map[badList[headed] + DirectionTypeEnum.directionList[directed]] == GridTypeEnum.body) {
-//                            egret.Logger.info("twice bad");
+//                            egret.log("twice bad");
 //                            return false;
 //                        } else {
-//                            egret.Logger.info("first time bad");
+//                            egret.log("first time bad");
 //                            return true;
 //                        }
 //                    }
 //                } else {
-//                    egret.Logger.info("second time bad");
+//                    egret.log("second time bad");
 //                    return true;
 //                }
 //            }

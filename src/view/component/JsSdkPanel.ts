@@ -48,7 +48,7 @@ class JsSdkPanel extends BasePanel{
     }
 
     private tipsEffect4(e):void{
-        var bodyConfig:BodyConfig = new BodyConfig;
+        var bodyConfig:BodyConfig = new BodyConfig();
         bodyConfig.appId = "wx602fb015fb1880a8";
         bodyConfig.debug = true;
         /// ... 其他的配置属性赋值

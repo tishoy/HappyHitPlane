@@ -40,7 +40,7 @@ class DirectionTypeEnum{
             return [1, 2, -17, -8, 10, 19, - 6, 12, 3 ];
 
         default:
-            egret.Logger.info("direction error");
+            egret.log("direction error");
             return [];
         }
     }

@@ -123,8 +123,8 @@ module TipsUtils {
         effectTips.stroke  = 2;
         effectTips.bold = true;
         effectTips.textAlign = egret.HorizontalAlign.CENTER;
-        effectTips.anchorX = 0.5;
-        effectTips.anchorY = 0.5;
+        effectTips.anchorOffsetX = 0.5;
+        effectTips.anchorOffsetY = 0.5;
         effectTips.scaleX = 0;
         effectTips.scaleY = 0;
 
@@ -164,8 +164,8 @@ module TipsUtils {
         effectTips.stroke  = 2;
         effectTips.bold = true;
         effectTips.textAlign = egret.HorizontalAlign.CENTER;
-        effectTips.anchorX = 0.5;
-        effectTips.anchorY = 0.5;
+        effectTips.anchorOffsetX = 0.5;
+        effectTips.anchorOffsetY = 0.5;
         effectTips.scaleX = 4;
         effectTips.scaleY = 4;
 

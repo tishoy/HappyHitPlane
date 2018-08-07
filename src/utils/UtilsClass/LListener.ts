@@ -37,7 +37,7 @@ module lcp{
         private isInit:boolean = false;
         public constructor(){
             if(this.isInit){
-                egret.Logger.warning("不可以实例化"+this.CLASS_NAME+"类,请实例Lcp."+this.CLASS_NAME+".getInstance()开始");
+                egret.warn("不可以实例化"+this.CLASS_NAME+"类,请实例Lcp."+this.CLASS_NAME+".getInstance()开始");
             }
             if(this._dispatcher == null){
                 this._dispatcher = new egret.EventDispatcher();

@@ -76,14 +76,14 @@
                 }
             }
             if(count == 0){
-                egret.Logger.fatal(this._currentMovieGroup+"上找不到帧标签：", String(frame));
+                egret.error(this._currentMovieGroup+"上找不到帧标签：", String(frame));
                 return false;
             }
             this._currentFrame = count;
             return true;
         }
 
-        egret.Logger.fatal("错误的参数类型，此函数只接受Number或者String类型的参数。当前输出参数类型为", typeof frame);
+        egret.error("错误的参数类型，此函数只接受Number或者String类型的参数。当前输出参数类型为", typeof frame);
         return false;
     }
 
@@ -347,11 +347,11 @@
             return;
         }
         if(!movieGroup){
-            egret.Logger.warning("MovieClip指定绘制的动画组不能为空");
+            egret.warn("MovieClip指定绘制的动画组不能为空");
             return;
         }
         if(this._moiveGroupList.indexOf(movieGroup) == -1){
-            egret.Logger.warning("MovieClip指定绘制的动画组不存在");
+            egret.warn("MovieClip指定绘制的动画组不存在");
             return;
         }
 
